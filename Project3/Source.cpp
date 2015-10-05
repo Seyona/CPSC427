@@ -1,6 +1,6 @@
 /*
 	David Baker
-	Last Revision : 09/22/2015
+	Last Revision : 10/15/2015
 
 	Goal:
 		* Create a program that will read a file of data 
@@ -32,7 +32,7 @@ int main() {
 	out_stats.standard_dev = calculateStdDev(readings);
 	out_stats.totalmeasurements = getTotalMeasurements(readings);
 
-	isWithinOne(readings, withinOne, notWithinOne, out_stats.mean);
+	isWithinOne(readings, withinOne, notWithinOne, out_stats.mean, out_stats.standard_dev);
 
 	out_stats.totalMeasurements_withinOneStdDev = withinOne.size();
 	out_stats.totalMeasurements_outsideOneStdDev = notWithinOne.size();

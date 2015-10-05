@@ -1,6 +1,6 @@
 /*
 	David Baker
-	Last Revision : 09/22/2015
+	Last Revision : 10/15/2015
 
 	This file holds all the utility functions for project 3, some functions can be used as a template for future functions
 */
@@ -114,10 +114,15 @@ int getTotalMeasurements(std::vector<measurement> readings) {
 
 	Returns void
 */
-void isWithinOne(std::vector<measurement> readings, std::vector<measurement> &withinOne, std::vector<measurement> &notWithinOne, double mean) {
+void isWithinOne(std::vector<measurement> readings, std::vector<measurement> &withinOne, std::vector<measurement> &notWithinOne, double mean, double std_dev) {
+	
+	double high_val = mean + std_dev;
+	double low_val = mean - std_dev;
+
 	for (measurement reading : readings) {
 		int val = reading.value;
-		if (val == mean || val == mean - 1 || val == mean + 1) {
+
+		if (val <= high_val && val >= low_val) {
 			withinOne.push_back(reading);
 		} else {
 			notWithinOne.push_back(reading);
