@@ -40,14 +40,17 @@ int main(){
 		}
 		file.open(fname);
 	}
-
+	file.close(); //file didn't need to stay open, just had to make sure there was a file in the directory
 	if (exit) return USER_CHOSE_TO_EXIT;
 
 	KP_FileReaderClass::FileReader reader = KP_FileReaderClass::FileReader::FileReader();
 	std::string contents("");
-	
 
+	int success = reader.getFileContents(fname,contents);
+
+	if (success != 0) return success; // only error could be a could not open file error,that should not happened
 	//got file data, this is a bogus time and memory wasting step
+	
 	//whose sole purpose is to provide a way to pass
 	//in a non const pointer to getDataBetweenTags(..) without casting
 	/*vector<char> myLine;
