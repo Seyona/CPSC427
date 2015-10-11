@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <fstream>
 #include "..\Include\FileReader.h"	//relative path, from PWD, go up one, then down into Include to find FileReader.h
 #include "..\Include\constants.h"
 #include "..\Include\Debug_Help.h"
@@ -24,13 +25,27 @@ void foreach(std::vector<std::string> myVector){
 
 int main(){
 	//TODO open file, if not there ask for a different file or exit
+	bool exit = false;
 	std::string fname ("");
-	std::cout << "Enter a file name to open" ;
+	std::cout << "Enter a file name to open, or X to exit the program" ;
 	std::cin >> fname;
+
+	std::ifstream file (fname);
+
+	while(!file.is_open() && fname != "X") {
+		std::cout << "There is no file named " << fname << ". Enter a new file name or X to exit the program";
+		std::cin >> fname;
+		if (fname == "X") {
+			exit = true;
+		}
+		file.open(fname);
+	}
+
+	if (exit) return USER_CHOSE_TO_EXIT;
 
 	KP_FileReaderClass::FileReader reader = KP_FileReaderClass::FileReader::FileReader();
 	std::string contents("");
-	while (
+	
 
 	//got file data, this is a bogus time and memory wasting step
 	//whose sole purpose is to provide a way to pass

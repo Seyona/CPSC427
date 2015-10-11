@@ -6,8 +6,6 @@
 using namespace std;
 using namespace KP_FileReaderClass;
 
-//TODO Fill this in
-
 FileReader::FileReader() : filecontents("") { }
 
 /*
@@ -21,7 +19,7 @@ FileReader::FileReader() : filecontents("") { }
 	Returns an int based on teh success of ReadTheWholeFile()
 */
 int FileReader::getFileContents(const std::string filename, std::string &contents) {
-	int success = getFileContents(filename);
+	int success = ReadTheWholeFile(filename);
 	contents = filecontents;
 	return success;
 }
