@@ -8,6 +8,8 @@ using namespace KP_FileReaderClass;
 
 FileReader::FileReader() : filecontents("") { }
 
+
+
 /*
 	Public method for FileReader. Adds the contents to the file	
 		to variable conents
@@ -20,7 +22,7 @@ FileReader::FileReader() : filecontents("") { }
 */
 int FileReader::getFileContents(const std::string filename, std::string &contents) {
 	int success = ReadTheWholeFile(filename);
-	contents = filecontents;
+	contents = getFileContents();
 	return success;
 }
 
@@ -39,10 +41,29 @@ int FileReader::ReadTheWholeFile(const std::string &filename) {
 	if (file.is_open()) {
 		string line("");
 		while (getline(file,line)) {
-			filecontents = line + ",";
+			addToContents(line);
 		}
 	} else {
 		return COULD_NOT_OPEN_FILE;
 	}
 	return SUCCEEDED;
+}
+
+/*
+	Retrives the file contents variable
+
+	Returns the string stored in filecontents
+*/
+std::string FileReader::getFileContents() {
+	return FileReader::filecontents;
+}
+
+/*
+	Concatinates the data to the file content string
+
+	Input :
+		Reference to a string, data
+*/
+void FileReader::addToContents(std::string &data) {
+	FileReader::filecontents += data;
 }
