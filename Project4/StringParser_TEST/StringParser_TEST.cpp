@@ -30,23 +30,17 @@ int main(){
 	std::cout << "Enter a file name to open, or X to exit the program" ;
 	std::cin >> fname;
 
-	std::ifstream file (fname);
-
-	while(!file.is_open() && fname != "X") {
-		std::cout << "There is no file named " << fname << ". Enter a new file name or X to exit the program";
-		std::cin >> fname;
-		if (fname == "X") {
-			exit = true;
-		}
-		file.open(fname);
-	}
-	file.close(); //file didn't need to stay open, just had to make sure there was a file in the directory
-	if (exit) return USER_CHOSE_TO_EXIT;
-
 	KP_FileReaderClass::FileReader reader = KP_FileReaderClass::FileReader::FileReader();
 	std::string contents("");
 
-	int success = reader.getFileContents(fname,contents);
+	int success = reader.getFileContents(fname, contents);
+
+	while(success != SUCCEEDED && fname != "X" && success != USER_CHOSE_TO_EXIT) {
+		std::cout << "There is no file named " << fname << ". Enter a new file name or X to exit the program";
+		std::cin >> fname;
+		success = reader.getFileContents(fname, contents);
+	}
+	if (success == USER_CHOSE_TO_EXIT) return USER_CHOSE_TO_EXIT;
 
 	if (success != 0) return success; // only error could be a could not open file error,that should not happened
 	//got file data, this is a bogus time and memory wasting step

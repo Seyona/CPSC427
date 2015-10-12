@@ -12,6 +12,8 @@ namespace KP_FileReaderClass{
 		int getFileContents(const std::string filename, std::string &contents);
 	private:
 		int ReadTheWholeFile(const std::string &filename);
+		std::string getContents();
+		void addToContents(std::string &data);
 		std::string		filecontents;
 	};
 }

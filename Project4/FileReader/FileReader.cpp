@@ -21,9 +21,14 @@ FileReader::FileReader() : filecontents("") { }
 	Returns an int based on teh success of ReadTheWholeFile()
 */
 int FileReader::getFileContents(const std::string filename, std::string &contents) {
-	int success = ReadTheWholeFile(filename);
-	contents = getFileContents();
-	return success;
+	if (filename != "X") {
+		int success = ReadTheWholeFile(filename);
+		contents = getContents(); 
+		return success;
+	}
+	else {
+		return USER_CHOSE_TO_EXIT;
+	}
 }
 
 /*
@@ -54,7 +59,7 @@ int FileReader::ReadTheWholeFile(const std::string &filename) {
 
 	Returns the string stored in filecontents
 */
-std::string FileReader::getFileContents() {
+std::string FileReader::getContents() {
 	return FileReader::filecontents;
 }
 
