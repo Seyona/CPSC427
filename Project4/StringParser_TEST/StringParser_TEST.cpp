@@ -66,7 +66,9 @@ int main(){
 	const char * ctag2(tag2.c_str());
 
 	std::cout << " Will pull data between " << ctag1 << " and " << ctag2 << std::endl;
-	parser.setTags(ctag1, ctag2);  // tags set
+	bool tagsSet = parser.setTags(ctag1, ctag2);  // tags set
+
+	if (!tagsSet) return parser.getLastError; // if tags failed, terminate program and return error type
 
 
 
@@ -77,7 +79,7 @@ int main(){
 	bool dataRetrieved = parser.getDataBetweenTags(c_contents, data);
 	//TODO  write to file and to screen
 	if (dataRetrieved) {
-		if (printToFile(data, "Output.txt") != SUCCEEDED) {
+		if (printToFile(data, OUTPUTFILENAME) != SUCCEEDED) {
 			printToScreen(data);
 		} else {
 			std::cout << "Could not print to file" << std::endl;
