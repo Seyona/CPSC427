@@ -23,6 +23,9 @@ void foreach(std::vector<std::string> myVector){
 	std::for_each(myVector.begin(), myVector.end(), outputvectorrow);
 }
 
+void printToScreen(std::vector<std::string> &data);
+int printToFile(std::vector<std::string> &data, std::string fname);
+
 int main(){
 	//TODO open file, if not there ask for a different file or exit
 	bool exit = false;
@@ -51,14 +54,60 @@ int main(){
 	std::copy(filecontents.begin(), filecontents.end(), back_inserter(myLine));*/
 
 	//TODO  create an instance of the stringparser
-
+	KP_StringParserClass::StringParserClass parser = KP_StringParserClass::StringParserClass::StringParserClass();
+	
 	//TODO set the tags
+	std::string tag1(""), tag2("");
+	std::cout << "What tags do you want to search between";
+	std::cin >> tag1;
+	std::cin >> tag2;
+
+	char * ctag1(tag1.c_str);
+	char * ctag2(tag2.c_str);
+
+	std::cout << " Will pull data between " << ctag1 << " and " << ctag2 << std::endl;
+	parser.setTags(ctag1, ctag2);  // tags set
+
+
 
 	//TODO pull out the data
+	std::vector<std::string> data;
+	char * c_contents = contents.c_str;
 
+	bool dataRetrieved = parser.getDataBetweenTags(c_contents, data);
 	//TODO  write to file and to screen
-
+	if (dataRetrieved) {
+		if (printToFile(data, "Output.txt") != SUCCEEDED) {
+			printToScreen(data);
+		} else {
+			std::cout << "Could not print to file" << std::endl;
+		}
+	} else {
+		std::cout << "Data could not be retrieved" << std::endl;
+	}
 }
 
+
+void printToScreen(std::vector<std::string> &data) {
+	for (std::string str : data) {
+		std::cout << str << " " ;
+	}
+	std::cout << std::endl;
+}
+
+int printToFile(std::vector<std::string> &data, std::string fname) {
+	std::ifstream file(fname);
+
+	if (file.is_open) {
+		// Will fix format for printing later
+		for (std::string str : data) {
+			file >> str >> " ";
+		}
+	} else {
+		return COULD_NOT_OPEN_FILE;
+	}
+
+	return SUCCEEDED;
+}
 
 
