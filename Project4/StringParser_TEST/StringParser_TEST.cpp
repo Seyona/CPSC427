@@ -53,17 +53,17 @@ int main(){
 	/*vector<char> myLine;
 	std::copy(filecontents.begin(), filecontents.end(), back_inserter(myLine));*/
 
-	//TODO  create an instance of the stringparser
+	// create an instance of the stringparser
 	KP_StringParserClass::StringParserClass parser = KP_StringParserClass::StringParserClass::StringParserClass();
 	
-	//TODO set the tags
+	// set the tags
 	std::string tag1(""), tag2("");
 	std::cout << "What tags do you want to search between";
 	std::cin >> tag1;
 	std::cin >> tag2;
 
-	char * ctag1(tag1.c_str);
-	char * ctag2(tag2.c_str);
+	const char * ctag1(tag1.c_str());
+	const char * ctag2(tag2.c_str());
 
 	std::cout << " Will pull data between " << ctag1 << " and " << ctag2 << std::endl;
 	parser.setTags(ctag1, ctag2);  // tags set

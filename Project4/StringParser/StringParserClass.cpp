@@ -41,19 +41,6 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 }
 
 /*
-	Sets the last error to the given error int
-
-	Input : 
-		reference to an Int
-
-	Output :
-		Nothing
-*/
-void StringParserClass::setError(int &err) {
-	StringParserClass::lastError = err;
-}
-
-/*
 
 */
 void cleanup() {

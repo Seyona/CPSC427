@@ -27,7 +27,6 @@ namespace KP_StringParserClass{
 		bool getDataBetweenTags(char *pDataToSearchThru, vector<string> &myVector);
 
 	private:
-		void setError(int &err);
 		void cleanup();
 		//pStart points to where we want to search in array
 		bool findTag(char *pTagToLookFor, char *&pStart, char *&pEnd);
