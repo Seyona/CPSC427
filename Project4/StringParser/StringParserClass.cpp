@@ -8,7 +8,7 @@
 using namespace std;
 using namespace KP_StringParserClass;
 
-StringParserClass::StringParserClass() : pStartTag(0), pEndTag(0), areTagsSet(false), lastError(UNINITIALIZED) {}
+StringParserClass::StringParserClass() : pStartTag(NULL), pEndTag(NULL), areTagsSet(false), lastError(UNINITIALIZED) {}
 
 /*
 	Function returns the value of lastError
@@ -37,9 +37,12 @@ bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
 
 	if(StringParserClass::pEndTag[1] != '/') {
 		StringParserClass::lastError = ERROR_TAGS_NULL;
-		return false;
+		StringParserClass::areTagsSet = false;
+	} else {
+		StringParserClass::areTagsSet = true;
 	}
-	return true;
+	
+	return StringParserClass::areTagsSet;
 }
 
 /*
@@ -52,7 +55,9 @@ bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
 		Success bool
 */
 bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<string> &myvector) {
-	
+	char * openingTagStart(NULL), openingTagEnd(NULL), closingTagStart(NULL), closingTagEnd(NULL);
+
+
 	return true;
 }
 
@@ -64,10 +69,13 @@ void cleanup() {
 }
 
 /*
-
+	
 
 	Input:
-		One C string, and two char's pointers passed by reference
+		Three C strings, 1 passed by value, 2 passed by reference
+		tagToLookFor : the tag the find in the data, will either be the start or end tag
+		start : the position of the '<' char
+		end : the position of the '>' char
 
 	Output :
 		success bool
