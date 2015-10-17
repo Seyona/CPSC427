@@ -68,13 +68,13 @@ int main(){
 	std::cout << " Will pull data between " << ctag1 << " and " << ctag2 << std::endl;
 	bool tagsSet = parser.setTags(ctag1, ctag2);  // tags set
 
-	if (!tagsSet) return parser.getLastError; // if tags failed, terminate program and return error type
+	if (!tagsSet) return parser.getLastError(); // if tags failed, terminate program and return error type
 
 
 
 	//TODO pull out the data
 	std::vector<std::string> data;
-	char * c_contents = contents.c_str;
+	char * c_contents = (char *)contents.c_str();
 
 	bool dataRetrieved = parser.getDataBetweenTags(c_contents, data);
 	//TODO  write to file and to screen
@@ -98,12 +98,12 @@ void printToScreen(std::vector<std::string> &data) {
 }
 
 int printToFile(std::vector<std::string> &data, std::string fname) {
-	std::ifstream file(fname);
+	std::ofstream file(fname);
 
-	if (file.is_open) {
+	if (file.is_open()) {
 		// Will fix format for printing later
 		for (std::string str : data) {
-			file >> str >> " ";
+			file <<  str << " ";
 		}
 	} else {
 		return COULD_NOT_OPEN_FILE;
