@@ -15,6 +15,7 @@
 #include "..\Include\constants.h"
 #include "..\Include\Debug_Help.h"
 #include "..\Include\StringParserClass.h"
+#include "..\StringParser\StringParserClass.cpp"
 
 void outputvectorrow(std::string i){
 	std::cout<<i<<std::endl;
@@ -54,6 +55,7 @@ int main(){
 	std::copy(filecontents.begin(), filecontents.end(), back_inserter(myLine));*/
 
 	// create an instance of the stringparser
+
 	KP_StringParserClass::StringParserClass parser = KP_StringParserClass::StringParserClass::StringParserClass();
 	
 	// set the tags

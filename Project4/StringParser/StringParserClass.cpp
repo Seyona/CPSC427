@@ -1,6 +1,6 @@
 
 #include <string>
-#include "..\Include\stringparserClass.h"
+#include "..\Include\StringParserClass.h"
 #include "..\Include\FileReader.h"
 #include "..\Include\constants.h"
 #include "..\Include\Debug_Help.h"
