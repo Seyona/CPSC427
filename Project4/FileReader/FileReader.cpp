@@ -7,6 +7,7 @@ using namespace std;
 using namespace KP_FileReaderClass;
 
 FileReader::FileReader() : filecontents("") { }
+FileReader::~FileReader() {}
 
 
 

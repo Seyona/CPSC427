@@ -9,6 +9,7 @@ using namespace std;
 using namespace KP_StringParserClass;
 
 StringParserClass::StringParserClass() : pStartTag(NULL), pEndTag(NULL), areTagsSet(false), lastError(UNINITIALIZED) {}
+StringParserClass::~StringParserClass() {}
 
 /*
 	Function returns the value of lastError
@@ -64,7 +65,7 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 /*
 
 */
-void cleanup() {
+void StringParserClass::cleanup() {
 	//not sure....
 }
 

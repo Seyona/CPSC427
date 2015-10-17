@@ -14,7 +14,7 @@
 #include "..\Include\FileReader.h"	//relative path, from PWD, go up one, then down into Include to find FileReader.h
 #include "..\Include\constants.h"
 #include "..\Include\Debug_Help.h"
-#include "..\Include\stringparserclass.h"
+#include "..\Include\StringParserClass.h"
 
 void outputvectorrow(std::string i){
 	std::cout<<i<<std::endl;
