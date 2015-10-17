@@ -23,7 +23,7 @@ FileReader::FileReader() : filecontents("") { }
 int FileReader::getFileContents(const std::string filename, std::string &contents) {
 	if (filename != "X") {
 		int success = ReadTheWholeFile(filename);
-		contents = getContents(); 
+		contents = FileReader::filecontents; 
 		return success;
 	}
 	else {
@@ -46,29 +46,10 @@ int FileReader::ReadTheWholeFile(const std::string &filename) {
 	if (file.is_open()) {
 		string line("");
 		while (getline(file,line)) {
-			addToContents(line);
+			FileReader::filecontents += line;
 		}
 	} else {
 		return COULD_NOT_OPEN_FILE;
 	}
 	return SUCCEEDED;
-}
-
-/*
-	Retrives the file contents variable
-
-	Returns the string stored in filecontents
-*/
-std::string FileReader::getContents() {
-	return FileReader::filecontents;
-}
-
-/*
-	Concatinates the data to the file content string
-
-	Input :
-		Reference to a string, data
-*/
-void FileReader::addToContents(std::string &data) {
-	FileReader::filecontents += data;
 }
