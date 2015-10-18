@@ -8,7 +8,7 @@
 using namespace std;
 using namespace KP_StringParserClass;
 
-StringParserClass::StringParserClass() : pStartTag(NULL), pEndTag(NULL), areTagsSet(false), lastError(UNINITIALIZED) {}
+StringParserClass::StringParserClass() : pStartTag(NULL), pEndTag(NULL), areTagsSet(false), lastError((int)UNINITIALIZED) {}
 StringParserClass::~StringParserClass() {}
 
 /*
@@ -57,8 +57,18 @@ bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
 */
 bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<string> &myvector) {
 	char * openingTagStart(NULL), openingTagEnd(NULL), closingTagStart(NULL), closingTagEnd(NULL);
-
-
+	// see if you can cast it as a string
+	if (areTagsSet){	
+		for (char* it = pDataToSearchThru; *it; ++it)
+		{
+			//fucking john madden
+		}
+	}
+	else
+	{
+		StringParserClass::lastError = ERROR_TAGS_NULL;
+		return false;
+	}
 	return true;
 }
 
@@ -82,6 +92,17 @@ void StringParserClass::cleanup() {
 		success bool
 */
 bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
+	//This method seems like a helper class to find tags in the data returning their starting and ending position
+	
+	if (areTagsSet)
+	{
+		//fucking john madden
+	}
+	else
+	{
+		StringParserClass::lastError = ERROR_TAGS_NULL;
+		return false;
+	}
 
 	return true;
 }
