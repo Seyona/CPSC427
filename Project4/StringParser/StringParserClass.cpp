@@ -8,7 +8,7 @@
 using namespace std;
 using namespace KP_StringParserClass;
 
-StringParserClass::StringParserClass() : pStartTag(NULL), pEndTag(NULL), areTagsSet(false), lastError((int)UNINITIALIZED) {}
+StringParserClass::StringParserClass() : pStartTag(NULL), pEndTag(NULL), areTagsSet(false), lastError(ERROR_NO_ERROR) {}
 StringParserClass::~StringParserClass() {}
 
 /*
@@ -200,7 +200,7 @@ bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 			}
 
 			if (*start == '\0' || *end == '\0') { // in this case start should never == '0', but it is a just in case8
-				this -> lastError = END_OF_DATA; //hit null term character no more data
+				this -> lastError = END_OF_DATA; //hit null term character no more data never found last tag
 				return false;
 			}
 		}
