@@ -15,7 +15,7 @@
 #include "..\Include\constants.h"
 #include "..\Include\Debug_Help.h"
 #include "..\Include\StringParserClass.h"
-#include "..\StringParser\StringParserClass.cpp"
+//#include "..\StringParser\StringParserClass.cpp"
 
 void outputvectorrow(std::string i){
 	std::cout<<i<<std::endl;

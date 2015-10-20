@@ -22,6 +22,8 @@ const int 	FILE_NOT_OPEN						= SUCCEEDED-6;
 const int	ERROR_NO_ERROR 						= SUCCEEDED -21;
 const int	ERROR_TAGS_NULL						= SUCCEEDED -22;
 const int	ERROR_DATA_NULL						= SUCCEEDED -23;
+const int	NO_TAG_FOUND                        = SUCCEEDED -24;
+const int   END_OF_DATA                         = SUCCEEDED -25;
 
 const double		UNINITIALIZED					= -1.0;
 

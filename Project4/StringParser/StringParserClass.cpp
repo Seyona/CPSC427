@@ -20,7 +20,9 @@ StringParserClass::~StringParserClass() {}
 		int with a value of the error
 */
 int StringParserClass::getLastError() {
-	return StringParserClass::lastError;
+	int temp = this -> lastError;
+	this -> lastError = ERROR_NO_ERROR;
+	return temp;
 }
 
 /*
@@ -71,10 +73,13 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 				scenario where start is a '<' and end is a '>' and if it is the tag we are looking for exit out we have our data. else keep going.
 	*/
 
+	if (!areTagsSet) {
+		lastError = ERROR_TAGS_NULL;
+		return false;
+	}
 
-
-	while (this -> getLastError != ERROR_DATA_NULL || this -> getLastError != ERROR_TAGS_NULL) {
-		if (pDataToSearchThru != NULL || *(pDataToSearchThru) != '\0') {
+	while (this -> getLastError() !=  END_OF_DATA || this -> getLastError() != NO_TAG_FOUND) {
+		if ((pDataToSearchThru != NULL) | (*(pDataToSearchThru) != '\0')) {
 			pOpeningTagStart = pDataToSearchThru; //start of pDataTosearchThru
 		} else {
 			this -> lastError = ERROR_DATA_NULL;
@@ -132,6 +137,8 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 	//okay so this is a good start, but what if there are multiple opening and closing tag pairs, probably should 
 	// refactor lines 74 to 117 into a while loop that says something like
 			// while (findTags) since find tags will work until an invalid tag is found, but we can talk about that
+
+	return myvector.empty();
 }
 
 /*
@@ -193,7 +200,7 @@ bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 			}
 
 			if (*start == '\0' || *end == '\0') { // in this case start should never == '0', but it is a just in case8
-				this -> lastError = ERROR_DATA_NULL; //hit null term character no more data
+				this -> lastError = END_OF_DATA; //hit null term character no more data
 				return false;
 			}
 		}
@@ -205,7 +212,7 @@ bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 	}
 
 	if(!tagFound) {
-		this -> lastError = ERROR_TAGS_NULL; //tags were not found
+		this -> lastError = NO_TAG_FOUND; //tags were not found
 		return false;
 	}
 
