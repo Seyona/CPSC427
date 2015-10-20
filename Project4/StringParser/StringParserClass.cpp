@@ -56,7 +56,7 @@ bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
 		Success bool
 */
 bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<string> &myvector) {
-	char * openingTagStart(NULL), openingTagEnd(NULL), closingTagStart(NULL), closingTagEnd(NULL);
+	char * pOpeningTagStart(NULL), * pOpeningTagEnd(NULL), * pClosingTagStart(NULL), * pClosingTagEnd(NULL);
 	// see if you can cast it as a string
 
 	/*
@@ -71,9 +71,57 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 				scenario where start is a '<' and end is a '>' and if it is the tag we are looking for exit out we have our data. else keep going.
 	*/
 
-	if (areTagsSet){	
+	if (pDataToSearchThru != NULL) {
+		pOpeningTagStart = pDataToSearchThru; //start of pDataTosearchThru
+	} else {
+		this -> lastError = ERROR_DATA_NULL;
+		return false;
+	}
+
+	int tagSize = 0;
+
+	const char* startTag = this -> pStartTag;
+
+	while ( *(startTag) != '\0') { //null char 
+		tagSize++;
+		startTag++;
+	}
+
+	pOpeningTagEnd = pOpeningTagStart + (tagSize - 1); // the end of the tag will be tagSize - 1 away from the start tag <to>'s start is 3 away from '<' 
+
+	// might need check if pOpeningTagEnd is getting set to a valid character... Throw datanull error if not? 
+
+	this -> findTag( this->pStartTag, pOpeningTagStart, pOpeningTagEnd);
+
+	pClosingTagStart = pOpeningTagEnd;
+	
+	const char * endTag = this -> pEndTag;
+	tagSize = 0;
+
+	while ( *(endTag) != '\0') {
+		tagSize++;
+		endTag++;
+	}
+
+	pClosingTagEnd = pClosingTagStart + (tagSize - 1);
+
+	this -> findTag( this -> pEndTag, pOpeningTagStart, pOpeningTagEnd);
+	
+	std::string data("");
+
+	char * pc;
+
+	for (pc = pOpeningTagStart; pc != pOpeningTagEnd; pc++) {
+		data += *(pc);
+	}
+	data += *(pc); //doesn't get the '>' of the tag since that is the cutoff point
+
+	//okay so this is a good start, but what if there are multiple opening and closing tag pairs, probably should 
+	// refactor lines 74 to 117 into a while loop that says something like
+			// while (findTags) since find tags will work until an invalid tag is found, but we can talk about that
 
 
+	/*if (areTagsSet){	
 		for (char* it = pDataToSearchThru; *it; ++it)
 		{
 			//fucking john madden
@@ -85,6 +133,7 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 		return false;
 	}
 	return true;
+	*/
 }
 
 /*
@@ -109,13 +158,44 @@ void StringParserClass::cleanup() {
 bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 	//This method seems like a helper class to find tags in the data returning their starting and ending position
 	
-	if (areTagsSet)
+	bool tagFound = false;//a tag is found when start == '<' and end == '>' and the data between matches
+
+	if (this -> areTagsSet)
 	{
-		//fucking john madden
+		while (	!tagFound ) {
+			if ( *(start) == '<' && *(end) == '>') {
+				//don't need the < at the start of the tag
+				char * pStartOfTag = start;
+				char * pEndOftag = end;
+
+				while (pStartOfTag != pEndOftag) { // might need to deref these here, but i don't think so?
+					if (*(pStartOfTag) != *(tagToLookFor)) {
+						tagFound = false;
+						break; //time to look again
+					}
+					pStartOfTag++;
+					tagToLookFor++;
+					tagFound = true;
+				}
+			} else {
+				start++;
+				end++;
+			}
+
+			if (*start == '\0' || *end == '\0') { // in this case start should never == '0', but it is a just in case8
+				this -> lastError = ERROR_DATA_NULL; //hit null term character no more data
+				return false;
+			}
+		}
 	}
 	else
 	{
 		this -> lastError = ERROR_TAGS_NULL;
+		return false;
+	}
+
+	if(!tagFound) {
+		this -> lastError = ERROR_TAGS_NULL; //tags were not found
 		return false;
 	}
 
