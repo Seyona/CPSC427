@@ -174,7 +174,7 @@ bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 	char startChar = *(tagToLookFor);
 	char endChar = *(--temp);
 
-	if (this -> areTagsSet)
+	if (this -> areTagsSet) //shouldn't happen anymore since there is a check before calling thsi function
 	{
 		temp = tagToLookFor;
 		while (	!tagFound ) {
