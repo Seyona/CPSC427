@@ -38,9 +38,10 @@ bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
 	if (pStartTag != NULL && pEndTag != NULL) { // maybe add a condition that checks for the '\0' char
 		this -> pStartTag = (char *)pStartTag;
 		this -> pEndTag = (char *)pEndTag;
+		this -> areTagsSet = true;
 	} else {
 		this -> lastError = ERROR_TAGS_NULL;
-		return false;
+		this -> areTagsSet = false;
 	}
 	
 	return this -> areTagsSet;
