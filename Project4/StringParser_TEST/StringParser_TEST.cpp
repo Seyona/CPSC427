@@ -78,7 +78,9 @@ int main(){
 	std::vector<std::string> data;
 	char * c_contents = (char *)contents.c_str();
 
-	bool dataRetrieved = parser.getDataBetweenTags(c_contents, data);
+	parser.getDataBetweenTags(c_contents, data);
+
+	bool dataRetrieved = !data.empty(); //
 	//TODO  write to file and to screen
 	if (dataRetrieved) {
 		if (printToFile(data, OUTPUTFILENAME) != SUCCEEDED) {
