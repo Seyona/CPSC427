@@ -24,7 +24,7 @@ FileReader::~FileReader() {}
 int FileReader::getFileContents(const std::string filename, std::string &contents) {
 	if (filename != "X") {
 		int success = ReadTheWholeFile(filename);
-		contents = FileReader::filecontents; 
+		contents = this -> filecontents; 
 		return success;
 	}
 	else {
@@ -47,7 +47,7 @@ int FileReader::ReadTheWholeFile(const std::string &filename) {
 	if (file.is_open()) {
 		string line("");
 		while (getline(file,line)) {
-			FileReader::filecontents += line;
+			this -> filecontents += line;
 		}
 	} else {
 		return COULD_NOT_OPEN_FILE;

@@ -33,17 +33,17 @@ int StringParserClass::getLastError() {
 		Success boolean
 */
 bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
-	StringParserClass::pStartTag = (char *)pStartTag;
-	StringParserClass::pEndTag = (char *)pEndTag;
+	this -> pStartTag = (char *)pStartTag;
+	this -> pEndTag = (char *)pEndTag;
 
-	if(StringParserClass::pEndTag[1] != '/') {
-		StringParserClass::lastError = ERROR_TAGS_NULL;
-		StringParserClass::areTagsSet = false;
+	if(this -> pEndTag[1] != '/') {
+		this -> lastError = ERROR_TAGS_NULL;
+		this -> areTagsSet = false;
 	} else {
-		StringParserClass::areTagsSet = true;
+		this -> areTagsSet = true;
 	}
 	
-	return StringParserClass::areTagsSet;
+	return this -> areTagsSet;
 }
 
 /*
@@ -58,7 +58,22 @@ bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
 bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<string> &myvector) {
 	char * openingTagStart(NULL), openingTagEnd(NULL), closingTagStart(NULL), closingTagEnd(NULL);
 	// see if you can cast it as a string
+
+	/*
+			These are just notes we can talk about it later...
+
+			when iterating over the data to find the start and end points of a tag let
+				Start = CurrentPointerPos
+				End = CurrentPointerPos + sizeOfTag-1
+
+				then when start is a '<' and end is a '>' we can check the inside of the tag to see if it is what we want
+				and then we search for the ending tag position the difference new start is the end of the last tag. then we collect data until we reach another 
+				scenario where start is a '<' and end is a '>' and if it is the tag we are looking for exit out we have our data. else keep going.
+	*/
+
 	if (areTagsSet){	
+
+
 		for (char* it = pDataToSearchThru; *it; ++it)
 		{
 			//fucking john madden
@@ -100,7 +115,7 @@ bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 	}
 	else
 	{
-		StringParserClass::lastError = ERROR_TAGS_NULL;
+		this -> lastError = ERROR_TAGS_NULL;
 		return false;
 	}
 
