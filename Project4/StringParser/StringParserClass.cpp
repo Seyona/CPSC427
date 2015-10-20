@@ -35,14 +35,12 @@ int StringParserClass::getLastError() {
 		Success boolean
 */
 bool StringParserClass::setTags(const char *pStartTag, const char *pEndTag) {
-	this -> pStartTag = (char *)pStartTag;
-	this -> pEndTag = (char *)pEndTag;
-
-	if(this -> pEndTag[1] != '/') { //technically this isn't true, i guess, should probably ask...
-		this -> lastError = ERROR_TAGS_NULL;
-		this -> areTagsSet = false;
+	if (pStartTag != NULL && pEndTag != NULL) { // maybe add a condition that checks for the '\0' char
+		this -> pStartTag = (char *)pStartTag;
+		this -> pEndTag = (char *)pEndTag;
 	} else {
-		this -> areTagsSet = true;
+		this -> lastError = ERROR_TAGS_NULL;
+		return false;
 	}
 	
 	return this -> areTagsSet;
