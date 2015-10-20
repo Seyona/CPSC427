@@ -128,9 +128,10 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 			data += *(pc);
 		}
 		myvector.push_back(data);
+		
+		//maybe delete the defined pointers? No issue assigning pDataToSearchThru to a new pointer bc it was passed by value 
 
 		pDataToSearchThru = pClosingTagEnd; //we have already searched through all the other data before pClosingTagEnd might as well be the new starting point
-
 	}
 	//okay so this is a good start, but what if there are multiple opening and closing tag pairs, probably should 
 	// refactor lines 74 to 117 into a while loop that says something like
