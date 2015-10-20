@@ -71,51 +71,58 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 				scenario where start is a '<' and end is a '>' and if it is the tag we are looking for exit out we have our data. else keep going.
 	*/
 
-	if (pDataToSearchThru != NULL) {
-		pOpeningTagStart = pDataToSearchThru; //start of pDataTosearchThru
-	} else {
-		this -> lastError = ERROR_DATA_NULL;
-		return false;
-	}
 
-	int tagSize = 0;
 
-	const char* startTag = this -> pStartTag;
+	while (this -> getLastError != ERROR_DATA_NULL || this -> getLastError != ERROR_TAGS_NULL) {
+		if (pDataToSearchThru != NULL) {
+			pOpeningTagStart = pDataToSearchThru; //start of pDataTosearchThru
+		} else {
+			this -> lastError = ERROR_DATA_NULL;
+			return false;
+		}
 
-	while ( *(startTag) != '\0') { //null char 
-		tagSize++;
-		startTag++;
-	}
+		int tagSize = 0;
 
-	pOpeningTagEnd = pOpeningTagStart + (tagSize - 1); // the end of the tag will be tagSize - 1 away from the start tag <to>'s start is 3 away from '<' 
+		const char* startTag = this -> pStartTag;
 
-	// might need check if pOpeningTagEnd is getting set to a valid character... Throw datanull error if not? 
+		while ( *(startTag) != '\0') { //null char 
+			tagSize++;
+			startTag++;
+		}
 
-	this -> findTag( this->pStartTag, pOpeningTagStart, pOpeningTagEnd);
+		pOpeningTagEnd = pOpeningTagStart + (tagSize - 1); // the end of the tag will be tagSize - 1 away from the start tag <to>'s start is 3 away from '<' 
 
-	pClosingTagStart = pOpeningTagEnd;
+		// might need check if pOpeningTagEnd is getting set to a valid character... Throw datanull error if not? 
+
+		bool good = this -> findTag( this->pStartTag, pOpeningTagStart, pOpeningTagEnd);
+
+		if (!good) break;
+
+		pClosingTagStart = pOpeningTagEnd;
 	
-	const char * endTag = this -> pEndTag;
-	tagSize = 0;
+		const char * endTag = this -> pEndTag;
+		tagSize = 0;
 
-	while ( *(endTag) != '\0') {
-		tagSize++;
-		endTag++;
-	}
+		while ( *(endTag) != '\0') {
+			tagSize++;
+			endTag++;
+		}
 
-	pClosingTagEnd = pClosingTagStart + (tagSize - 1);
+		pClosingTagEnd = pClosingTagStart + (tagSize - 1);
 
-	this -> findTag( this -> pEndTag, pOpeningTagStart, pOpeningTagEnd);
+		good = this -> findTag( this -> pEndTag, pOpeningTagStart, pOpeningTagEnd);
 	
-	std::string data("");
+		if (!good) break;
 
-	char * pc;
+		std::string data("");
 
-	for (pc = pOpeningTagStart; pc != pOpeningTagEnd; pc++) {
-		data += *(pc);
+		char * pc;
+
+		for (pc = pOpeningTagStart; pc != pOpeningTagEnd; pc++) {
+			data += *(pc);
+		}
+		data += *(pc); //doesn't get the '>' of the tag since that is the cutoff point
 	}
-	data += *(pc); //doesn't get the '>' of the tag since that is the cutoff point
-
 	//okay so this is a good start, but what if there are multiple opening and closing tag pairs, probably should 
 	// refactor lines 74 to 117 into a while loop that says something like
 			// while (findTags) since find tags will work until an invalid tag is found, but we can talk about that
