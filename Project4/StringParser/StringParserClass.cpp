@@ -124,10 +124,9 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 
 		char * pc;
 
-		for (pc = pOpeningTagStart; pc != pOpeningTagEnd; pc++) {
+		for (pc = (++pOpeningTagEnd); pc != pClosingTagStart; pc++) { //just want the data between the end of the starting tag and the start of the closing tag
 			data += *(pc);
 		}
-		data += *(pc); //doesn't get the '>' of the tag since that is the cutoff point
 		myvector.push_back(data);
 
 		pDataToSearchThru = pClosingTagEnd; //we have already searched through all the other data before pClosingTagEnd might as well be the new starting point
