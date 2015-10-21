@@ -88,14 +88,21 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 		int tagSize = 0;
 
 		const char* startTag = this -> pStartTag;
+		char * ptemp = pOpeningTagStart;
 
 		while ( *(startTag) != '\0') { //null char 
-			tagSize++;
+			if ( *(ptemp) == '\0') {
+				this -> lastError = END_OF_DATA;
+				return false;
+			}
+			ptemp++;
+			tagSize++; //may not need tag size, keep just in case
 			startTag++;
 		}
 
-		pOpeningTagEnd = pOpeningTagStart + (tagSize - 1); // the end of the tag will be tagSize - 1 away from the start tag <to>'s start is 3 away from '<' 
-
+		//openingTagEnd = popeningTagSTart + (tagSize - 1)
+		pOpeningTagEnd = ptemp; 
+		delete ptemp;
 		// might need check if pOpeningTagEnd is getting set to a valid character... Throw datanull error if not? 
 
 		bool good = this -> findTag( this->pStartTag, pOpeningTagStart, pOpeningTagEnd);
@@ -105,14 +112,33 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 		pClosingTagStart = pOpeningTagEnd;
 	
 		const char * endTag = this -> pEndTag;
+		char * ptemp = pClosingTagStart;
 		tagSize = 0;
 
 		while ( *(endTag) != '\0') {
-			tagSize++;
+			if ( *(ptemp) == '\0') {
+				this -> lastError = END_OF_DATA;
+				return false;
+			}
+			ptemp++;
+			tagSize++; //might not need tagsize anymore
 			endTag++;
 		}
 
-		pClosingTagEnd = pClosingTagStart + (tagSize - 1);
+		/*char * ptemp = pClosingTagStart;
+		int i = tagSize;
+		while (i != 1) {
+			if ( *(ptemp) == '\0') {
+				this -> lastError = END_OF_DATA;
+				break;
+			}
+			ptemp++;
+			i--;
+		}*/
+
+		//ptemp = closingTagStart + (tagSize - 1)
+		pClosingTagEnd = ptemp;
+		delete ptemp;
 
 		good = this -> findTag( this -> pEndTag, pClosingTagStart, pClosingTagEnd);
 	
