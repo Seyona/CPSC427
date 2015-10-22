@@ -102,8 +102,7 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 
 		//openingTagEnd = popeningTagSTart + (tagSize - 1)
 		pOpeningTagEnd = ptemp; 
-		delete ptemp;
-		ptemp = '\0';
+		ptemp = NULL;
 		// might need check if pOpeningTagEnd is getting set to a valid character... Throw datanull error if not? 
 
 		bool good = this -> findTag( this->pStartTag, pOpeningTagStart, pOpeningTagEnd);
@@ -204,14 +203,21 @@ bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
 	if (this -> areTagsSet) //shouldn't happen anymore since there is a check before calling thsi function
 	{
 		temp = tagToLookFor;
+		start++;
 		while (	!tagFound ) {
-			if ( *(start) == startChar && *(end) == endChar) {
+			
+			char startDref = *start;
+			
+			char endDref = *end;
+			if ( startDref == startChar && endDref == endChar) {
 				//don't need the < at the start of the tag
-				char * pStartOfTag = start;
-				char * pEndOftag = end;
+				start++;
+				char  pStartOfTag = *(start);
+				temp++;
+				char  pEndOftag = *end;
 
 				while (pStartOfTag != pEndOftag) { // might need to deref these here, but i don't think so?
-					if (*(pStartOfTag) != *(temp)) {
+					if ((pStartOfTag) != *(temp)) {
 						tagFound = false;
 						break; //time to look again
 					}

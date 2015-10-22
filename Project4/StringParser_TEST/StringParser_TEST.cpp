@@ -40,7 +40,7 @@ int main(){
 	int success = reader.getFileContents(fname, contents);
 
 	while(success != SUCCEEDED && fname != "X" && success != USER_CHOSE_TO_EXIT) { //fname != "X" should be a redundent statement, but will be used for now.
-		std::cout << "There is no file named " << fname << ". Enter a new file name or X to exit the program";
+		std::cout << "There is no file named " << fname << " Enter a new file name or X to exit the program";
 		std::cin >> fname;
 		success = reader.getFileContents(fname, contents);
 	}
