@@ -103,6 +103,7 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 		//openingTagEnd = popeningTagSTart + (tagSize - 1)
 		pOpeningTagEnd = ptemp; 
 		delete ptemp;
+		ptemp = '\0';
 		// might need check if pOpeningTagEnd is getting set to a valid character... Throw datanull error if not? 
 
 		bool good = this -> findTag( this->pStartTag, pOpeningTagStart, pOpeningTagEnd);
@@ -112,7 +113,7 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 		pClosingTagStart = pOpeningTagEnd;
 	
 		const char * endTag = this -> pEndTag;
-		char * ptemp = pClosingTagStart;
+		ptemp = pClosingTagStart;
 		tagSize = 0;
 
 		while ( *(endTag) != '\0') {
