@@ -86,31 +86,22 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 			startFound = true;
 		}
 	}
+
+	return myvector.empty();
 }
 
 /*
-
+	sets values to their default constuctor value(s)
 */
 void StringParserClass::cleanup() {
-	
+	this -> pStartTag = NULL;
+	this -> pEndTag = NULL;
+	this -> lastError = ERROR_NO_ERROR;
+	this -> areTagsSet = false;
 }
-
 /*
-	
-
-	Input:
-		Three C strings, 1 passed by value, 2 passed by reference
-		tagToLookFor : the tag the find in the data, will either be the start or end tag
-		start : the data's current pointer location
-		end : the data's current pointer location + (the size of the tag - 1)
-
-	Output :
-		success bool
-
-	After the function:
-		Start will be the starting character of the tag
-		End will be the last character of the tag
+	Unused
 */
 bool StringParserClass::findTag(char *tagToLookFor, char *&start, char *&end) {
-	
+	return false;
 }

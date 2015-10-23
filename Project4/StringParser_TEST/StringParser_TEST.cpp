@@ -107,7 +107,7 @@ int printToFile(std::vector<std::string> &data, std::string fname) {
 	if (file.is_open()) {
 		// Will fix format for printing later
 		for (std::string str : data) {
-			file <<  str << " ";
+			file <<  str << "\n";
 		}
 	} else {
 		return COULD_NOT_OPEN_FILE;
