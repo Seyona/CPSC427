@@ -80,7 +80,7 @@ bool StringParserClass::getDataBetweenTags(char *pDataToSearchThru, vector<strin
 				stringToAdd += *(pDataToSearchThru + i);
 			}
 		}
-		else if (pStartTag[0] == *(pDataToSearchThru + i) && (memcmp(pStartTag,(pDataToSearchThru + i),lengthOfStartTag)))
+		else if (pStartTag[0] == *(pDataToSearchThru + i) && (memcmp(pStartTag,(pDataToSearchThru + i),lengthOfStartTag) == 0))
 		{
 			i += lengthOfStartTag -1;
 			startFound = true;
