@@ -27,7 +27,7 @@ bool Instructions::draw(std::vector<std::string> &myScreenVector){			//pure virt
 	myScreenVector[16 ].replace(1,59,"                o|                                         ");
 	myScreenVector[17 ].replace(1,59,"                _|_                                        ");
 	myScreenVector[20 ].replace(1,59,"                     arrow keys (or K M H P) = movement    ");
-	myScreenVector[21 ].replace(1,63,"                     B,b = Begin   R,r = Reset  I,i = Help");
+	myScreenVector[21 ].replace(1,63,"                     B,b = Begin   R,r = Reset  I,i = Help  X,x = Exit");
 	
 	//myScreenVector[18 ].replace(1,59,"                      <- or -> (K or B) = left/right       ");
 	//myScreenVector[19 ].replace(1,61,"                      Down arrow t      = pause defenselessly");
