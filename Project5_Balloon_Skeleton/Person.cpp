@@ -14,12 +14,91 @@ Person::~Person(void)
 //always return false since person never deleted
 bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 //
-//	bLegChangePosition = !bLegChangePosition;
-//	switch(dir){
-//	case LEFT:
+bLegChangePosition = !bLegChangePosition;
+switch(dir){
+	case LEFT:
+		if (bLegChangePosition){
+			myScreenVector[14].replace(1,14,	"   \\\\\\\\|//// ");
+			myScreenVector[15].replace(1,14,	"    |~ ////  ");
+			myScreenVector[16].replace(1,14,	"    |O  //   ");
+			myScreenVector[17].replace(1,14,	"   <    |    ");
+			myScreenVector[18].replace(1,14,	"    |_/ |    ");
+			myScreenVector[19].replace(1,14,	"--o |__/    ");
+			myScreenVector[20].replace(1,14,	"   \\__|      ");
+			myScreenVector[21].replace(1,14,	"      |      ");
+			myScreenVector[22].replace(1,14,	"     /|      ");
+			myScreenVector[23].replace(1,14,    "   \\/_|      ");
+			break;
+		}
+		else
+		{
+			myScreenVector[14].replace(1, 14,	"   \\\\\\\\|//// ");
+			myScreenVector[15].replace(1, 14,	"    |~ ////  ");
+			myScreenVector[16].replace(1, 14,	"    |O  //   ");
+			myScreenVector[17].replace(1, 14,	"   <    |    ");
+			myScreenVector[18].replace(1, 14,	"    |_/ |    ");
+			myScreenVector[19].replace(1, 14,	"--o |__/    ");
+			myScreenVector[20].replace(1, 14,	"   \\__|      ");
+			myScreenVector[21].replace(1, 14,	"      |      ");
+			myScreenVector[22].replace(1, 14,	"      |      ");
+			myScreenVector[23].replace(1, 14,	"    \\||      ");
+			break;
+		}
 
+	case RIGHT:
+		if (bLegChangePosition){
+			myScreenVector[14].replace(1, 14,	" \\\\\\\\|////   ");
+			myScreenVector[15].replace(1, 14,	"  \\\\\\\\ ~|    ");
+			myScreenVector[16].replace(1, 14,	"   \\\\  O|    ");
+			myScreenVector[17].replace(1, 14,	"    |    >   ");
+			myScreenVector[18].replace(1, 14,	"    | \\_|    ");
+			myScreenVector[19].replace(1, 14,	"     \\__| o--");
+			myScreenVector[20].replace(1, 14,	"      |__/   ");
+			myScreenVector[21].replace(1, 14,	"      |      ");
+			myScreenVector[22].replace(1, 14,	"      |\\     ");
+			myScreenVector[23].replace(1, 14,	"      |_\\/    ");
+			break;
+		}
+		else
+		{
+			myScreenVector[14].replace(1, 14,	" \\\\\\\\|////   ");
+			myScreenVector[15].replace(1, 14,	"  \\\\\\\\ ~|    ");
+			myScreenVector[16].replace(1, 14,	"   \\\\  O|    ");
+			myScreenVector[17].replace(1, 14,	"    |    >   ");
+			myScreenVector[18].replace(1, 14,	"    | \\_|    ");
+			myScreenVector[19].replace(1, 14,	"     \\__| o--");
+			myScreenVector[20].replace(1, 14,	"      |__/   ");
+			myScreenVector[21].replace(1, 14,	"      |      ");
+			myScreenVector[22].replace(1, 14,	"      |     ");
+			myScreenVector[23].replace(1, 14,	"      ||/    ");
+			break;
+		}
+	case UP:
+			myScreenVector[14].replace(1,14,	" \\\\\\\\\\|///// ");
+			myScreenVector[15].replace(1,14,	"  \\\\|\\ /|//  ");
+			myScreenVector[16].replace(1,14,	"   \\|O O|/   ");
+			myScreenVector[17].replace(1,14,	"    | ^ |    ");
+			myScreenVector[18].replace(1,14,	" \\  | - |  / ");
+			myScreenVector[19].replace(1,14,	"  o |___| o  ");
+			myScreenVector[20].replace(1,14,	"   \\__|__/   ");
+			myScreenVector[21].replace(1,14,	"      |     ");
+			myScreenVector[22].replace(1,14,	"      |     ");
+			myScreenVector[23].replace(1,14,	"     _|_     ");
+			break;
 
-
+	case NO_DIR:
+			myScreenVector[14].replace(1, 14,	" \\\\\\\\\\|///// ");
+			myScreenVector[15].replace(1, 14,	"  \\\\|~ ~|//  ");
+			myScreenVector[16].replace(1, 14,	"   \\|O O|/   ");
+			myScreenVector[17].replace(1, 14,	"    | ^ |    ");
+			myScreenVector[18].replace(1, 14,	"    | v |    ");
+			myScreenVector[19].replace(1, 14,	"    |___|    ");
+			myScreenVector[20].replace(1, 14,	"    __|__    ");
+			myScreenVector[21].replace(1, 14,	"    \\ | /    ");
+			myScreenVector[22].replace(1, 14,	"     0|0     ");
+			myScreenVector[23].replace(1, 14,	"     _|_     ");
+			break;
+}
 //
 //		"   \\\\\\\\|//// ");
 //		"    |~ ////  ");
@@ -82,5 +161,5 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 //
 //	}
 
-	return false;
+return false;
 }
