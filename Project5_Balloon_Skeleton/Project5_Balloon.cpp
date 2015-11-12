@@ -36,9 +36,9 @@ int main() {
 
 	//user input
 	char myChar;
-
+	bool exit = false;
 	//this is the game loop it runs until we close the app
-	for (;;) {
+	for (;!exit;) {
 		//go back to location 00 on screen and redraw
 		gotoxy(0,0);
 
@@ -71,6 +71,11 @@ int main() {
 		case 'b':
 		case 'B':
 			myController.setControllerState(RUN);
+			break;
+
+		case 'x':
+		case 'X':
+			myController.setControllerState(EXIT);
 			break;
 		}
 	}

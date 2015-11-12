@@ -61,6 +61,10 @@ void Controller::draw(){
 		myInstructions.draw(myScreenVector);
 		break;
 
+	case EXIT:
+		std::exit(0);
+		break;
+
 	case RUN:
 		//create a balloon if appropriate
 		createBalloon();
@@ -84,6 +88,8 @@ void Controller::draw(){
 		//show score if keeping
 		renderScoresToScreenbuffer();
 		break;
+
+	
 	}
 
 	//output the screen buffer
