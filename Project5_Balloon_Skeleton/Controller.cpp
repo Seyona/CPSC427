@@ -4,6 +4,7 @@
 #include <time.h>
 #include "Controller.h"
 #include "balloon.h"
+#include "Anvil.h"
 #include "ScoreKeeper.h"
 
 Controller::Controller(int width, int height, SPEED speed):myScreenBufferSize(width,height),mSpeed(speed),iTimeBetweenBalloonCreation(QUANTUM_WAIT_TIME +2*speed),cosmo(myScreenBufferSize,location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT),speed),myInstructions(myScreenBufferSize,location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT),speed),mControllerState(SHOW_INTRO)
@@ -109,21 +110,38 @@ void Controller::createBalloon(){
 		return;
 	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST-mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
+	std::srand (time(NULL)); //initialize random seed
+	int balloonType = std::rand() % 6 ; // generates a random number 0 - 5
+
 	//LOCATION  number between 0 and max balloon size for location
 	int ilocx = rand()%(myScreenBufferSize.x -BALLOON_WIDTH);
 	int ilocy = rand()%BALLOON_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
 	location myLoc(ilocx, ilocy);
 
 	//HOW LONG BEFORE IT FALLS
-	int iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST-mSpeed)*QUANTUM_WAIT_TIME);
+	int iHowLongBeforeFall;
 
-	//SPEED OF FALL
-	SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);	//make sure this falls between SLOW=1 and FAST=4
+
+	if (balloonType == 5) { //drop an anvil
+		iHowLongBeforeFall = 0;
+
+		SPEED iAnvilSpeed = FAST;
+
+		Anvil aAnvil(myScreenBufferSize,myLoc,iHowLongBeforeFall,iAnvilSpeed);
+		my_movable_objects.push_back(aAnvil);
+	} else { // drop a balloon
+		
+		iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST-mSpeed)*QUANTUM_WAIT_TIME);
+		//SPEED OF FALL
+		SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);//make sure this falls between SLOW=1 and FAST=4
+
+		Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);
+		my_movable_objects.push_back(aBalloon);
+	}
 
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);
-	myBalloons.push_back(aBalloon);
-	my_movable_objects.push_back(aBalloon);
+	
+	
 }
 
 
