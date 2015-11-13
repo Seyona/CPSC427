@@ -15,6 +15,8 @@ public:
 	//inline int getScoreCosmo(){return scoreBalloon;};
 
 	//typically its 1 at a time
+	inline	void inc_score_cosmo_anvil (int i= 5){scoreCosmo+=i;};
+	inline	void inc_score_anvil (int i =5){scoreBalloon+=i;};
 	inline  void incScoreBalloon(int i=1){scoreBalloon+=i;};
 	inline  void incScoreCosmo(int i=1){scoreCosmo+=i;};
 	inline  void resetScores(){scoreBalloon=0;scoreCosmo=0;};

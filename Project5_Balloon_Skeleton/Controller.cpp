@@ -95,7 +95,7 @@ void Controller::draw(){
 		while ( myIter != my_movable_objects.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo(*(*myIter));
-			if (col == COSMO_POPPED || col == BALLOON_CLOBBERED_COSMO || col == NO || col == CLOBBERED)
+			if (col == COSMO_POPPED || col == NO || col == CLOBBERED)
 				(*(*myIter)).setCollidedState(col);		
 
 			if ((*myIter) -> draw(myScreenVector))
@@ -188,14 +188,36 @@ COLLISION Controller::hasCollidedWithCosmo(Moveable &pBalloon){
 		//-on side with needle(s) cosmo wins
 		DIRECTION dir = cosmo.getDir();
 
-		if (dir == UP || (x>0 && dir==LEFT) || (x<0 && dir==RIGHT)){
-			scorekeeper.incScoreCosmo();
-			return COSMO_POPPED;
+		if (typeid(pBalloon) == typeid(Balloon))
+		{
+			if (dir == UP || (x>0 && dir == LEFT) || (x<0 && dir == RIGHT)){
+				scorekeeper.incScoreCosmo();
+				return COSMO_POPPED;
+			}
+			else
+			{
+				scorekeeper.incScoreBalloon();
+				return CLOBBERED;
+			}	
 		}
+		else
+		{
+			if (dir == UP || (x>0 && dir == LEFT) || (x<0 && dir == RIGHT)){
+				scorekeeper.inc_score_cosmo_anvil();
+				return COSMO_POPPED;
+			}
+			else
+			{
+				scorekeeper.inc_score_anvil();
+				return CLOBBERED;
+			}
+			
+		}
+		
 
 		//balloon hit cosmo on head or back or cosmo was standing with arms on hips 
-		scorekeeper.incScoreBalloon();
-		return CLOBBERED;
+		
+		
 	}
 	else
 		return NO;
