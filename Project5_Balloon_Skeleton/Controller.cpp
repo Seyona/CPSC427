@@ -77,7 +77,7 @@ void Controller::draw(){
 				location myloc(cosmo.getX()-1,cosmo.getY());
 				cosmo.setLocation(myloc);
 			}
-		} else if (cosmo.getDir() == RIGHT ) {
+		} else if (cosmo.getDir() == RIGHT)
 			if (cosmo.getX() + 1 < 67) {
 				location myloc(cosmo.getX() + 1, cosmo.getY());
 				cosmo.setLocation(myloc);

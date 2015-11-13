@@ -17,6 +17,13 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 bLegChangePosition = !bLegChangePosition;
 switch(dir){
 	case LEFT:
+
+		if (myLoc.x - spd == 0){
+
+		}
+		else{
+			myLoc.x = myLoc.x - spd;
+		}
 		if (bLegChangePosition){
 			myScreenVector[myLoc.y].replace(myLoc.x,14,	"   \\\\\\\\|//// ");
 			myScreenVector[myLoc.y + 1].replace(myLoc.x,14,	"    |~ ////  ");
