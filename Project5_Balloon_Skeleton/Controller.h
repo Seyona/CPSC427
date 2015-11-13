@@ -34,6 +34,8 @@ public:
 
 	inline void changeCosmoDirection(DIRECTION dir){cosmo.setDirection(dir);};
 
+	void set_terrible();
+
 private:
 	//reset it all
 	void initialize();
@@ -70,5 +72,7 @@ private:
 
 	ScoreKeeper scorekeeper;
 	CONTROLLER_STATE mControllerState;
+
+	bool terrible;
 };
 

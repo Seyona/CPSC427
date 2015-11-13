@@ -77,6 +77,10 @@ int main() {
 		case 'X':
 			myController.setControllerState(EXIT);
 			break;
+
+		case 't':
+		case 'T':
+			myController.set_terrible();
 		}
 	}
 

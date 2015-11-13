@@ -5,7 +5,7 @@
 #include "Anvil.h"
 #include "Controller.h"
 #include "balloon.h"
-#include "Anvil.h"
+#include "TerribleBalloon.h"
 #include "ScoreKeeper.h"
 
 Controller::Controller(int width, int height, SPEED speed) :myScreenBufferSize(width, height), mSpeed(speed), iTimeBetweenBalloonCreation(QUANTUM_WAIT_TIME + 2 * speed), i_time_between_anvil_creation(ANVIL_WAIT_TIME + 2 * speed), cosmo(myScreenBufferSize, location(myScreenBufferSize.x / 2, myScreenBufferSize.y - PERSON_HEIGHT), speed), myInstructions(myScreenBufferSize, location(myScreenBufferSize.x / 2, myScreenBufferSize.y - PERSON_HEIGHT), speed), mControllerState(SHOW_INTRO)
@@ -48,7 +48,12 @@ void Controller::initialize(){
 	//reset cosmo to middle of screen, standing still
 	cosmo.setLocation(location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT));
 	cosmo.setDirection(NO_DIR);
+	terrible = false;
+}
 
+void Controller::set_terrible()
+{
+	terrible = !terrible;
 }
 
 void Controller::draw(){
@@ -70,7 +75,14 @@ void Controller::draw(){
 
 	case RUN:
 		//create a balloon if appropriate
-		createBalloon();
+		if (!terrible)
+		{
+			createBalloon();
+		}
+		else
+		{
+			create_terrible_balloons();
+		}
 		create_anvils();
 
 		//render cosmo to screenbuffer
@@ -78,25 +90,15 @@ void Controller::draw(){
 
 
 		//render balloons to screenbuffer
-		std::vector<Moveable>::iterator myIter = my_movable_objects.begin();
-		
-		while ( myIter != my_movable_objects.end()){
-			//collisions
-			COLLISION col = hasCollidedWithCosmo((*myIter));
-			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO || col == NO) myIter->setCollidedState(col);		
-
-			if ( myIter->draw(myScreenVector))
-
 		std::vector<std::unique_ptr<Moveable>>::iterator myIter = my_movable_objects.begin();
 		
 		while ( myIter != my_movable_objects.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo(*(*myIter));
-			if (col == COSMO_POPPED || col == BALLOON_CLOBBERED_COSMO || col == NO || col == ANVIL_CLOBBERED)
+			if (col == COSMO_POPPED || col == BALLOON_CLOBBERED_COSMO || col == NO || col == CLOBBERED)
 				(*(*myIter)).setCollidedState(col);		
 
 			if ((*myIter) -> draw(myScreenVector))
-
 				myIter = my_movable_objects.erase(myIter);
 			else
 				++myIter;
@@ -116,6 +118,26 @@ void Controller::draw(){
 
 void Controller::renderScoresToScreenbuffer(){
 	scorekeeper.getDisplayString(myScreenVector[0]);
+}
+
+void Controller::create_terrible_balloons()
+{
+	if (--iTimeBetweenBalloonCreation != 0)
+		return;
+	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
+	
+	int ilocx = rand() % (myScreenBufferSize.x - BALLOON_WIDTH);
+	int ilocy = rand() % BALLOON_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
+	location myLoc(ilocx, ilocy);
+
+	//HOW LONG BEFORE IT FALLS
+	int iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST - mSpeed)*QUANTUM_WAIT_TIME);
+
+	//SPEED OF FALL
+	SPEED iBalloonSpeed = (SPEED)((rand() % mSpeed) + 1);
+
+	my_movable_objects.push_back(std::unique_ptr<Moveable>(dynamic_cast<Moveable*>(new TerribleBalloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed))));
+
 }
 void Controller::create_anvils()
 {
@@ -139,43 +161,19 @@ void Controller::createBalloon(){
 		return;
 	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST-mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
-	std::srand (time(NULL)); //initialize random seed
-	int balloonType = std::rand() % 6 ; // generates a random number 0 - 5
-
 	//LOCATION  number between 0 and max balloon size for location
 	int ilocx = rand()%(myScreenBufferSize.x -BALLOON_WIDTH);
 	int ilocy = rand()%BALLOON_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
 	location myLoc(ilocx, ilocy);
 
 	//HOW LONG BEFORE IT FALLS
-	int iHowLongBeforeFall;
+	int iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST-mSpeed)*QUANTUM_WAIT_TIME);
 
-
-	if (balloonType == 5) { //drop an anvil
-		iHowLongBeforeFall = 0;
-
-		SPEED iAnvilSpeed = FAST;
-
-		Anvil aAnvil(myScreenBufferSize,myLoc,iHowLongBeforeFall,iAnvilSpeed);
-		my_movable_objects.push_back(aAnvil);
-	} else { // drop a balloon
-		
-		iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST-mSpeed)*QUANTUM_WAIT_TIME);
-		//SPEED OF FALL
-		SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);//make sure this falls between SLOW=1 and FAST=4
-
-		Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);
-		my_movable_objects.push_back(aBalloon);
-	}
+	//SPEED OF FALL
+	SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);	//make sure this falls between SLOW=1 and FAST=4
 
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	
-	
-}
-
-
-
-COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
 	my_movable_objects.push_back(std::unique_ptr<Moveable>(new Balloon (myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed)));
 }
 
@@ -197,7 +195,7 @@ COLLISION Controller::hasCollidedWithCosmo(Moveable &pBalloon){
 
 		//balloon hit cosmo on head or back or cosmo was standing with arms on hips 
 		scorekeeper.incScoreBalloon();
-		return BALLOON_CLOBBERED_COSMO;
+		return CLOBBERED;
 	}
 	else
 		return NO;

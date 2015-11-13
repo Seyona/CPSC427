@@ -1,7 +1,6 @@
 #include "Balloon.h"
-#include <iostream>
-Balloon::Balloon(sizeofScreenBuffer myScreenBufferSize,location myLoc,int iHowLongBeforeFall, SPEED spd, DIRECTION dir ):Moveable(myScreenBufferSize,myLoc,spd, dir)
-{
+
+Balloon::Balloon(sizeofScreenBuffer myScreenBufferSize,location myLoc,int iHowLongBeforeFall, SPEED spd, DIRECTION dir ):Moveable(myScreenBufferSize,myLoc,spd, dir) {
 	this->iHowLongBeforeFall = iHowLongBeforeFall;
 }
 
@@ -14,91 +13,62 @@ bool Balloon::draw(std::vector<std::string>& myScreenVector){			//pure virtual, 
 
 	bool bDeleteMe = false;
 	
-	switch (col) {
-	case NO:
-		if (iHowLongBeforeFall <= 0 && iTimeBetweenMovements == 0)
-		{
-			myLoc.y = myLoc.y + spd;
-			iTimeBetweenMovements++;
-		}
-		else
-		{
+	switch(col) {
+		case NO:
+			if (iHowLongBeforeFall <= 0 && iTimeBetweenMovements == 0)
+			{
+				myLoc.y = myLoc.y + spd;
+				iTimeBetweenMovements++;
+			}
+			else
+			{
 
-			iHowLongBeforeFall--;
-			iTimeBetweenMovements = 0;
-		}
-		myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "  ___  ");
-		myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, " //\\ \\ ");
-		myScreenVector[myLoc.y + 2].replace(myLoc.x, BALLOON_WIDTH, "| \\/  |");
-		myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, " \\   / ");
-		myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "  \\ /  ");
-		myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, "   |   ");
-		myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "   |   ");
+				iHowLongBeforeFall--;
+				iTimeBetweenMovements = 0;
+			}
 
-		if (myLoc.y + BALLOON_HEIGHT >= myScreenBufferSize.y) {
+			myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "  ___  ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, " //\\ \\ ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, BALLOON_WIDTH, "| \\/  |");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, " \\   / ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "  \\ /  ");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, "   |   ");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "   |   ");
+
+			if (myLoc.y + BALLOON_HEIGHT >= myScreenBufferSize.y) {
+				bDeleteMe = true;
+			}
+
+			break;
+
+		case CLOBBERED:
+
+			myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "   *   ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, " *   * ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, BALLOON_WIDTH, "* * * *");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, "*BOOM *");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "* * * *");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, " *   * ");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "   *   ");
+
 			bDeleteMe = true;
-		}
 
-		break;
+			break;
 
-	case BALLOON_CLOBBERED_COSMO:
+			
+		case COSMO_POPPED:
 
-		myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "   *   ");
-		myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, " *   * ");
-		myScreenVector[myLoc.y + 2].replace(myLoc.x, BALLOON_WIDTH, "* * * *");
-		myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, "*BOOM *");
-		myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "* * * *");
-		myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, " *   * ");
-		myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "   *   ");
+			myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "       ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, "    |  ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, " - pop-");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "  /   \\");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, "    |  ");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "       ");
 
-		bDeleteMe = true;
+			bDeleteMe = true;
 
-		break;
-	case COSMO_POPPED:
+			break;
 
-		myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "       ");
-		myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, "    |  ");
-		myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, " - pop-");
-		myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "  /   \\");
-		myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, "    |  ");
-		myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "       ");
-
-		bDeleteMe = true;
-
-		break;
-
-		/*case COSMO_POPPED:
-		"       ");
-		"    |  ");
-		"  \\   /");
-		" - pop-");
-		"  /   \\");
-		"    |  ");
-		"       ");
-		bDeleteMe = true;
-		break;
-
-
-		"   *   ");
-		" *   * ");
-		"* * * *");
-		"*BOOM *");
-		"* * * *");
-		" *   * ");
-		"   *   ");
-
-
-
-
-		"  ___  ");
-		" //\\ \\ ");
-		"| \\/  |");
-		" \\   / ");
-		"  \\ /  ");
-		"   |   ");
-		"   |   ");
-
-		}*/
 	}
 
 	return bDeleteMe;
