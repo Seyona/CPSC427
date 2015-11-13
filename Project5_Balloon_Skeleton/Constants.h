@@ -43,6 +43,8 @@ const int X_OVERLAP_WHERE_COSMO_HIT_ON_HEAD = 4;
 //bounding boxes (width , height)
 const int BALLOON_WIDTH		= 7;
 const int BALLOON_HEIGHT	= 7;
+const int ANVIL_WIDTH		= 5;
+const int ANVIL_HEIGHT		= 5;
 const int PERSON_WIDTH		= 13;
 const int PERSON_HEIGHT		= 10;
 const int BEE_WIDTH			= 5;
@@ -54,5 +56,6 @@ const int DEFAULT_HEIGHT =24;
 
 //wait times go for at least this many cycles
 const int MIN_BALLOON_HOVER_TIME	= 60;
+const int ANVIL_WAIT_TIME			= 60;
 const int QUANTUM_WAIT_TIME			= 5;
 const int BALLOON_APPEAR_BAND_SIZE	= 5;

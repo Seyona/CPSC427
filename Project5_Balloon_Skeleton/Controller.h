@@ -6,6 +6,7 @@
 #include "balloon.h"
 #include "scorekeeper.h"
 #include "instructions.h"
+#include <memory>
 
 class Controller
 {
@@ -29,7 +30,7 @@ public:
 	//TODO you will have to change this function when you replace
 	//myBalloons with a polymorphic vector
 	//test to see if cosmo has run into an object
-	COLLISION hasCollidedWithCosmo(Balloon pBalloon);
+	COLLISION hasCollidedWithCosmo(Moveable &pBalloon);
 
 	inline void changeCosmoDirection(DIRECTION dir){cosmo.setDirection(dir);};
 
@@ -46,6 +47,7 @@ private:
 	SPEED mSpeed;		//game speed
 	//number of game ticks before  created
 	int iTimeBetweenBalloonCreation;
+	int i_time_between_anvil_creation;
 	sizeofScreenBuffer myScreenBufferSize;	//width and height of consolewindow
 
 	//holds entire consolewindow screen, 
@@ -54,7 +56,7 @@ private:
 
 	//all of our balloons not polymorphic though
 	std::vector<Balloon> myBalloons;
-	std::vector<Moveable> my_movable_objects;
+	std::vector<std::unique_ptr<Moveable>> my_movable_objects;
 
 	//cosmo the person
 	Person cosmo;
