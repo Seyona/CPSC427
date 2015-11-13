@@ -16,7 +16,17 @@ bool Balloon::draw(std::vector<std::string>& myScreenVector){			//pure virtual, 
 	
 	switch(col) {
 		case NO:
+			if (iHowLongBeforeFall <= 0 && iTimeBetweenMovements == 0 )
+			{
+				myLoc.y = myLoc.y + spd;
+				iTimeBetweenMovements++;
+			}
+			else
+			{
 
+				iHowLongBeforeFall--;
+				iTimeBetweenMovements = 0;
+			}
 			myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "  ___  ");
 			myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, " //\\ \\ ");
 			myScreenVector[myLoc.y + 2].replace(myLoc.x, BALLOON_WIDTH, "| \\/  |");
@@ -29,9 +39,6 @@ bool Balloon::draw(std::vector<std::string>& myScreenVector){			//pure virtual, 
 				bDeleteMe = true;
 			}
 
-			myLoc.y = myLoc.y + spd;
-			setLocation(myLoc);
-			
 			break;
 
 		case BALLOON_CLOBBERED_COSMO:

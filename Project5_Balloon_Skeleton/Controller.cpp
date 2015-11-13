@@ -70,9 +70,7 @@ void Controller::draw(){
 		createBalloon();
 
 		//render cosmo to screenbuffer
-		cosmo.draw(myScreenVector);
-		
-		
+		cosmo.draw(myScreenVector);		
 
 
 		//render balloons to screenbuffer
