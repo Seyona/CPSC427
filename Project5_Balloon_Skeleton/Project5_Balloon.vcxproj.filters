@@ -45,6 +45,9 @@
     <ClCompile Include="Instructions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Anvil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Moveable.h">

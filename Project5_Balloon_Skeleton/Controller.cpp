@@ -77,7 +77,7 @@ void Controller::draw(){
 				location myloc(cosmo.getX()-1,cosmo.getY());
 				cosmo.setLocation(myloc);
 			}
-		} else if (cosmo.getDir() == RIGHT)
+		} else if (cosmo.getDir() == RIGHT) {
 			if (cosmo.getX() + 1 < 67) {
 				location myloc(cosmo.getX() + 1, cosmo.getY());
 				cosmo.setLocation(myloc);
@@ -85,7 +85,7 @@ void Controller::draw(){
 		}
 
 		//render balloons to screenbuffer
-		std::vector<Balloon>::iterator myIter = myBalloons.begin();
+		std::vector<Moveable>::iterator myIter = myBalloons.begin();
 		while ( myIter != myBalloons.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo((*myIter));
@@ -133,7 +133,6 @@ void Controller::createBalloon(){
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);	
 }
-
 
 COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
 	//get the x separation 

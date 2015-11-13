@@ -50,7 +50,7 @@ private:
 	std::vector<std::string> myScreenVector;
 
 	//all of our balloons not polymorphic though
-	std::vector<Balloon> myBalloons;
+	std::vector<Moveable> myBalloons;
 
 	//cosmo the person
 	Person cosmo;
