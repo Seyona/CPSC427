@@ -1,9 +1,9 @@
 #pragma once
-#include "moveable.h";
+#include "moveable.h"
 
 class Anvil : public Moveable {
 	public:
-		Anvil(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLongBeforeFall, SPEED spd = NO_SPD, DIRECTION dir = DOWN);
+		Anvil(sizeofScreenBuffer myScreenBufferSize, location myLoc, SPEED spd = NO_SPD, DIRECTION dir = DOWN);
 		virtual ~Anvil(void);
 
 		//returns true if its time to delete
