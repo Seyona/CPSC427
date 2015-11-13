@@ -86,7 +86,7 @@ void Controller::draw(){
 
 
 		//render balloons to screenbuffer
-		std::vector<Moveable>::iterator myIter = myBalloons.begin();
+		std::vector<Balloon>::iterator myIter = myBalloons.begin();
 		while ( myIter != myBalloons.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo((*myIter));

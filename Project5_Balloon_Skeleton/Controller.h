@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Moveable.h"
 #include "constants.h"
 #include "person.h"
 #include "balloon.h"
@@ -50,7 +51,7 @@ private:
 	std::vector<std::string> myScreenVector;
 
 	//all of our balloons not polymorphic though
-	std::vector<Moveable> myBalloons;
+	std::vector<Balloon> myBalloons;
 
 	//cosmo the person
 	Person cosmo;

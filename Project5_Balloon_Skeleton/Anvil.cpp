@@ -14,16 +14,16 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector){			//pure virtual, ab
 
 	switch(this -> col) {
 
-		if (myLoc.y - this -> spd <= 0) {
+		if (myLoc.y + this -> spd >= 24) {
 			bDeleteMe = true;
 		}
 
 		case NO:
 			myScreenVector[myLoc.y].replace(myLoc.x,14,		"     ___    ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x,14,	"    /   \   ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x,14,	"    /   \\   ");
 			myScreenVector[myLoc.y + 2].replace(myLoc.x,14,	"    |O O|   ");
 			myScreenVector[myLoc.y + 3].replace(myLoc.x,14,	"    |   |   ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14,"    \___/   ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14,"    \\___/   ");
 			break;
 		
 		case BALLOON_CLOBBERED_COSMO:
