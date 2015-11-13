@@ -25,30 +25,30 @@ switch(dir){
 			myLoc.x = myLoc.x - spd;
 		}
 		if (bLegChangePosition){
-			myScreenVector[myLoc.y].replace(myLoc.x,14,	"   \\\\\\\\|//// ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x,14,	"    |~ ////  ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x,14,	"    |O  //   ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x,14,	"   <    |    ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14, "    |_/ |    ");
-			myScreenVector[myLoc.y + 5].replace(myLoc.x, 14, "--o |__/    ");
-			myScreenVector[myLoc.y + 6].replace(myLoc.x, 14, "   \\__|      ");
-			myScreenVector[myLoc.y + 7].replace(myLoc.x, 14, "      |      ");
-			myScreenVector[myLoc.y + 8].replace(myLoc.x, 14, "     /|      ");
-			myScreenVector[myLoc.y + 9].replace(myLoc.x, 14, "   \\/_|      ");
+			myScreenVector[myLoc.y].replace(myLoc.x, PERSON_WIDTH, "   \\\\\\\\|//// ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, PERSON_WIDTH, "    |~ ////  ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, PERSON_WIDTH, "    |O  //   ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, PERSON_WIDTH, "   <    |    ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, PERSON_WIDTH, "    |_/ |    ");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, PERSON_WIDTH, "--o |__/    ");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, PERSON_WIDTH, "   \\__|      ");
+			myScreenVector[myLoc.y + 7].replace(myLoc.x, PERSON_WIDTH, "      |      ");
+			myScreenVector[myLoc.y + 8].replace(myLoc.x, PERSON_WIDTH, "     /|      ");
+			myScreenVector[myLoc.y + 9].replace(myLoc.x, PERSON_WIDTH, "   \\/_|      ");
 			break;
 		}
 		else
 		{
-			myScreenVector[myLoc.y].replace(myLoc.x, 14, "   \\\\\\\\|//// ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x, 14, "    |~ ////  ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x, 14, "    |O  //   ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x, 14, "   <    |    ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14, "    |_/ |    ");
-			myScreenVector[myLoc.y + 5].replace(myLoc.x, 14, "--o |__/    ");
-			myScreenVector[myLoc.y + 6].replace(myLoc.x, 14, "   \\__|      ");
-			myScreenVector[myLoc.y + 7].replace(myLoc.x, 14, "      |      ");
-			myScreenVector[myLoc.y + 8].replace(myLoc.x, 14, "      |      ");
-			myScreenVector[myLoc.y + 9].replace(myLoc.x, 14, "    \\||      ");
+			myScreenVector[myLoc.y].replace(myLoc.x, PERSON_WIDTH, "   \\\\\\\\|//// ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, PERSON_WIDTH, "    |~ ////  ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, PERSON_WIDTH, "    |O  //   ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, PERSON_WIDTH, "   <    |    ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, PERSON_WIDTH, "    |_/ |    ");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, PERSON_WIDTH, "--o |__/    ");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, PERSON_WIDTH, "   \\__|      ");
+			myScreenVector[myLoc.y + 7].replace(myLoc.x, PERSON_WIDTH, "      |      ");
+			myScreenVector[myLoc.y + 8].replace(myLoc.x, PERSON_WIDTH, "      |      ");
+			myScreenVector[myLoc.y + 9].replace(myLoc.x, PERSON_WIDTH, "    \\||      ");
 			break;
 		}
 
@@ -62,57 +62,57 @@ switch(dir){
 		}
 
 		if (bLegChangePosition){
-			myScreenVector[myLoc.y].replace(myLoc.x, 14, " \\\\\\\\|////   ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x, 14, "  \\\\\\\\ ~|    ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x, 14, "   \\\\  O|    ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x, 14, "    |    >   ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14, "    | \\_|    ");
-			myScreenVector[myLoc.y + 5].replace(myLoc.x, 14, "     \\__| o--");
-			myScreenVector[myLoc.y + 6].replace(myLoc.x, 14, "      |__/   ");
-			myScreenVector[myLoc.y + 7].replace(myLoc.x, 14, "      |      ");
-			myScreenVector[myLoc.y + 8].replace(myLoc.x, 14, "      |\\     ");
-			myScreenVector[myLoc.y + 9].replace(myLoc.x, 14, "      |_\\/    ");
+			myScreenVector[myLoc.y].replace(myLoc.x, PERSON_WIDTH, " \\\\\\\\|////   ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, PERSON_WIDTH, "  \\\\\\\\ ~|    ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, PERSON_WIDTH, "   \\\\  O|    ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, PERSON_WIDTH, "    |    >   ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, PERSON_WIDTH, "    | \\_|    ");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, PERSON_WIDTH, "     \\__| o--");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, PERSON_WIDTH, "      |__/   ");
+			myScreenVector[myLoc.y + 7].replace(myLoc.x, PERSON_WIDTH, "      |      ");
+			myScreenVector[myLoc.y + 8].replace(myLoc.x, PERSON_WIDTH, "      |\\     ");
+			myScreenVector[myLoc.y + 9].replace(myLoc.x, PERSON_WIDTH, "      |_\\/    ");
 			break;
 		}
 		else
 		{
-			myScreenVector[myLoc.y].replace(myLoc.x, 14, " \\\\\\\\|////   ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x, 14, "  \\\\\\\\ ~|    ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x, 14, "   \\\\  O|    ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x, 14, "    |    >   ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14, "    | \\_|    ");
-			myScreenVector[myLoc.y + 5].replace(myLoc.x, 14, "     \\__| o--");
-			myScreenVector[myLoc.y + 6].replace(myLoc.x, 14, "      |__/   ");
-			myScreenVector[myLoc.y + 7].replace(myLoc.x, 14, "      |      ");
-			myScreenVector[myLoc.y + 8].replace(myLoc.x, 14, "      |     ");
-			myScreenVector[myLoc.y + 9].replace(myLoc.x, 14, "      ||/    ");
+			myScreenVector[myLoc.y].replace(myLoc.x, PERSON_WIDTH, " \\\\\\\\|////   ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, PERSON_WIDTH, "  \\\\\\\\ ~|    ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, PERSON_WIDTH, "   \\\\  O|    ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, PERSON_WIDTH, "    |    >   ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, PERSON_WIDTH, "    | \\_|    ");
+			myScreenVector[myLoc.y + 5].replace(myLoc.x, PERSON_WIDTH, "     \\__| o--");
+			myScreenVector[myLoc.y + 6].replace(myLoc.x, PERSON_WIDTH, "      |__/   ");
+			myScreenVector[myLoc.y + 7].replace(myLoc.x, PERSON_WIDTH, "      |      ");
+			myScreenVector[myLoc.y + 8].replace(myLoc.x, PERSON_WIDTH, "      |     ");
+			myScreenVector[myLoc.y + 9].replace(myLoc.x, PERSON_WIDTH, "      ||/    ");
 			break;
 		}
 	case UP:
-			myScreenVector[myLoc.y].replace(myLoc.x, 14, " \\\\\\\\\\|///// ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x, 14, "  \\\\|\\ /|//  ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x, 14, "   \\|O O|/   ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x, 14, "    | ^ |    ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14, " \\  | - |  / ");
-			myScreenVector[myLoc.y + 5].replace(myLoc.x, 14, "  o |___| o  ");
-			myScreenVector[myLoc.y + 6].replace(myLoc.x, 14, "   \\__|__/   ");
-			myScreenVector[myLoc.y + 7].replace(myLoc.x, 14, "      |     ");
-			myScreenVector[myLoc.y + 8].replace(myLoc.x, 14, "      |     ");
-			myScreenVector[myLoc.y + 9].replace(myLoc.x, 14, "     _|_     ");
-			break;
+		myScreenVector[myLoc.y].replace(myLoc.x, PERSON_WIDTH, " \\\\\\\\\\|///// ");
+		myScreenVector[myLoc.y + 1].replace(myLoc.x, PERSON_WIDTH, "  \\\\|\\ /|//  ");
+		myScreenVector[myLoc.y + 2].replace(myLoc.x, PERSON_WIDTH, "   \\|O O|/   ");
+		myScreenVector[myLoc.y + 3].replace(myLoc.x, PERSON_WIDTH, "    | ^ |    ");
+		myScreenVector[myLoc.y + 4].replace(myLoc.x, PERSON_WIDTH, " \\  | - |  / ");
+		myScreenVector[myLoc.y + 5].replace(myLoc.x, PERSON_WIDTH, "  o |___| o  ");
+		myScreenVector[myLoc.y + 6].replace(myLoc.x, PERSON_WIDTH, "   \\__|__/   ");
+		myScreenVector[myLoc.y + 7].replace(myLoc.x, PERSON_WIDTH, "      |     ");
+		myScreenVector[myLoc.y + 8].replace(myLoc.x, PERSON_WIDTH, "      |     ");
+		myScreenVector[myLoc.y + 9].replace(myLoc.x, PERSON_WIDTH, "     _|_     ");
+		break;
 
 	case NO_DIR:
-			myScreenVector[myLoc.y].replace(myLoc.x, 14, " \\\\\\\\\\|///// ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x, 14, "  \\\\|~ ~|//  ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x, 14, "   \\|O O|/   ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x, 14, "    | ^ |    ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14, "    | v |    ");
-			myScreenVector[myLoc.y + 5].replace(myLoc.x, 14, "    |___|    ");
-			myScreenVector[myLoc.y + 6].replace(myLoc.x, 14, "    __|__    ");
-			myScreenVector[myLoc.y + 7].replace(myLoc.x, 14, "    \\ | /    ");
-			myScreenVector[myLoc.y + 8].replace(myLoc.x, 14, "     0|0     ");
-			myScreenVector[myLoc.y + 9].replace(myLoc.x, 14, "     _|_     ");
-			break;
+		myScreenVector[myLoc.y].replace(myLoc.x, PERSON_WIDTH, " \\\\\\\\\\|///// ");
+		myScreenVector[myLoc.y + 1].replace(myLoc.x, PERSON_WIDTH, "  \\\\|~ ~|//  ");
+		myScreenVector[myLoc.y + 2].replace(myLoc.x, PERSON_WIDTH, "   \\|O O|/   ");
+		myScreenVector[myLoc.y + 3].replace(myLoc.x, PERSON_WIDTH, "    | ^ |    ");
+		myScreenVector[myLoc.y + 4].replace(myLoc.x, PERSON_WIDTH, "    | v |    ");
+		myScreenVector[myLoc.y + 5].replace(myLoc.x, PERSON_WIDTH, "    |___|    ");
+		myScreenVector[myLoc.y + 6].replace(myLoc.x, PERSON_WIDTH, "    __|__    ");
+		myScreenVector[myLoc.y + 7].replace(myLoc.x, PERSON_WIDTH, "    \\ | /    ");
+		myScreenVector[myLoc.y + 8].replace(myLoc.x, PERSON_WIDTH, "     0|0     ");
+		myScreenVector[myLoc.y + 9].replace(myLoc.x, PERSON_WIDTH, "     _|_     ");
+		break;
 }
 //
 //		"   \\\\\\\\|//// ");
