@@ -74,16 +74,15 @@ void Controller::draw(){
 
 
 		//render balloons to screenbuffer
-		std::vector<Balloon>::iterator myIter = myBalloons.begin();
+		std::vector<Moveable>::iterator myIter = my_movable_objects.begin();
 		
-		while ( myIter != myBalloons.end()){
+		while ( myIter != my_movable_objects.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo((*myIter));
-			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO || col == NO)
-			myIter->setCollidedState(col);		
+			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO || col == NO) myIter->setCollidedState(col);		
 
 			if ( myIter->draw(myScreenVector))
-				myIter = myBalloons.erase(myIter);
+				myIter = my_movable_objects.erase(myIter);
 			else
 				++myIter;
 		}
@@ -124,7 +123,10 @@ void Controller::createBalloon(){
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);
 	myBalloons.push_back(aBalloon);
+	my_movable_objects.push_back(aBalloon);
 }
+
+
 
 COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
 	//get the x separation 
