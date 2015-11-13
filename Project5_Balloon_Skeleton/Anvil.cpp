@@ -13,25 +13,29 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector){			//pure virtual, ab
 	bool bDeleteMe = false;
 
 	switch(this -> col) {
-
-		if (myLoc.y + this -> spd >= 24) {
-			bDeleteMe = true;
-		}
+ 
 
 		case NO:
-			myScreenVector[myLoc.y].replace(myLoc.x,14,		"     ___    ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x,14,	"    /   \\   ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x,14,	"    |O O|   ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x,14,	"    |   |   ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14,"    \\___/   ");
+			if (myLoc.y + BALLOON_HEIGHT + 2 >= myScreenBufferSize.y)
+			{
+				bDeleteMe = true;
+				break;
+			}
+			myLoc.y = myLoc.y + spd;
+
+			myScreenVector[myLoc.y].replace(myLoc.x,BALLOON_WIDTH,		"     ___    ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x,BALLOON_WIDTH,	"    /   \\   ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x,BALLOON_WIDTH,	"    |O O|   ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x,BALLOON_WIDTH,	"    |   |   ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH,"    \\___/   ");
 			break;
 		
-		case BALLOON_CLOBBERED_COSMO:
-			myScreenVector[myLoc.y].replace(myLoc.x,14,		"            ");
-			myScreenVector[myLoc.y + 1].replace(myLoc.x,14,	"            ");
-			myScreenVector[myLoc.y + 2].replace(myLoc.x,14,	"   GET GUD  ");
-			myScreenVector[myLoc.y + 3].replace(myLoc.x,14,	"            ");
-			myScreenVector[myLoc.y + 4].replace(myLoc.x, 14,"            ");
+		case ANVIL_CLOBBERED:
+			myScreenVector[myLoc.y].replace(myLoc.x, BALLOON_WIDTH, "            ");
+			myScreenVector[myLoc.y + 1].replace(myLoc.x, BALLOON_WIDTH, "            ");
+			myScreenVector[myLoc.y + 2].replace(myLoc.x, BALLOON_WIDTH, "   GET GUD  ");
+			myScreenVector[myLoc.y + 3].replace(myLoc.x, BALLOON_WIDTH, "            ");
+			myScreenVector[myLoc.y + 4].replace(myLoc.x, BALLOON_WIDTH, "            ");
 			bDeleteMe = true;
 			break;
 	}
