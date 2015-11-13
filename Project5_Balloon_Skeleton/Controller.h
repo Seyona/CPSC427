@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Moveable.h"
 #include "constants.h"
 #include "person.h"
 #include "balloon.h"

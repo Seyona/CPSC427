@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Anvil.cpp" />
     <ClCompile Include="Balloon.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Instructions.cpp" />
