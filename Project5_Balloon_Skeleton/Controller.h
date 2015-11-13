@@ -17,6 +17,8 @@ public:
 	//render the scene
 	void draw();
 	void createBalloon();
+	void create_anvils();
+	void create_terrible_balloons();
 
 	//change game speed.
 	inline void setSpeed(SPEED speed){mSpeed = speed;};
@@ -52,6 +54,7 @@ private:
 
 	//all of our balloons not polymorphic though
 	std::vector<Balloon> myBalloons;
+	std::vector<Moveable> my_movable_objects;
 
 	//cosmo the person
 	Person cosmo;

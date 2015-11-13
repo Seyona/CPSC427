@@ -75,10 +75,11 @@ void Controller::draw(){
 
 		//render balloons to screenbuffer
 		std::vector<Balloon>::iterator myIter = myBalloons.begin();
+		
 		while ( myIter != myBalloons.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo((*myIter));
-			//if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO)
+			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO || col == NO)
 			myIter->setCollidedState(col);		
 
 			if ( myIter->draw(myScreenVector))
@@ -102,6 +103,7 @@ void Controller::draw(){
 void Controller::renderScoresToScreenbuffer(){
 	scorekeeper.getDisplayString(myScreenVector[0]);
 }
+
 void Controller::createBalloon(){
 	//BALLOON CREATION RATE based on difficulty
 	if (--iTimeBetweenBalloonCreation !=0)
