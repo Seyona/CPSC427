@@ -16,7 +16,7 @@ bool Balloon::draw(std::vector<std::string>& myScreenVector){			//pure virtual, 
 	
 	switch(col) {
 		case NO:
-			if (iHowLongBeforeFall <= 0 && iTimeBetweenMovements == 0 )
+			if (iHowLongBeforeFall <= 0 && iTimeBetweenMovements == 0)
 			{
 				myLoc.y = myLoc.y + spd;
 				iTimeBetweenMovements++;
@@ -35,7 +35,7 @@ bool Balloon::draw(std::vector<std::string>& myScreenVector){			//pure virtual, 
 			myScreenVector[myLoc.y + 5].replace(myLoc.x, BALLOON_WIDTH, "   |   ");
 			myScreenVector[myLoc.y + 6].replace(myLoc.x, BALLOON_WIDTH, "   |   ");
 
-			if (myLoc.y + BALLOON_HEIGHT + 2 >= myScreenBufferSize.y) {
+			if (myLoc.y + BALLOON_HEIGHT >= myScreenBufferSize.y) {
 				bDeleteMe = true;
 			}
 
