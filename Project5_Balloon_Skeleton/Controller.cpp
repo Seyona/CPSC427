@@ -188,7 +188,7 @@ COLLISION Controller::hasCollidedWithCosmo(Moveable &pBalloon){
 		//-on side with needle(s) cosmo wins
 		DIRECTION dir = cosmo.getDir();
 
-		if (typeid(pBalloon) == typeid(Balloon))
+		if (typeid(pBalloon) == typeid(Balloon) || typeid(pBalloon) == typeid(TerribleBalloon))
 		{
 			if (dir == UP || (x>0 && dir == LEFT) || (x<0 && dir == RIGHT)){
 				scorekeeper.incScoreCosmo();
