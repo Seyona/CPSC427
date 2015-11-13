@@ -41,7 +41,7 @@ void Controller::initialize(){
 	scorekeeper.resetScores();
 
 	//TODO clear polymorphic vector that tracks balloons terrible balloons and anvils
-	
+	myScreenVector.clear();
 
 	//reset cosmo to middle of screen, standing still
 	cosmo.setLocation(location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT));
@@ -89,8 +89,8 @@ void Controller::draw(){
 		while ( myIter != myBalloons.end()){
 			//collisions
 			COLLISION col = hasCollidedWithCosmo((*myIter));
-			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO)
-				myIter->setCollidedState(col);		
+			//if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO)
+			myIter->setCollidedState(col);		
 
 			if ( myIter->draw(myScreenVector))
 				myIter = myBalloons.erase(myIter);
@@ -131,7 +131,8 @@ void Controller::createBalloon(){
 	SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);	//make sure this falls between SLOW=1 and FAST=4
 
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);	
+	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);
+	myBalloons.push_back(aBalloon);
 }
 
 
