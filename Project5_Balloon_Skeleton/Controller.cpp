@@ -71,18 +71,6 @@ void Controller::draw(){
 
 		//render cosmo to screenbuffer
 		cosmo.draw(myScreenVector);
-		
-		if (cosmo.getDir() == LEFT ) {
-			if (cosmo.getX() - 1 > 0) {
-				location myloc(cosmo.getX()-1,cosmo.getY());
-				cosmo.setLocation(myloc);
-			}
-		} else if (cosmo.getDir() == RIGHT)
-			if (cosmo.getX() + 1 < 67) {
-				location myloc(cosmo.getX() + 1, cosmo.getY());
-				cosmo.setLocation(myloc);
-			}
-		}
 
 		//render balloons to screenbuffer
 		std::vector<Balloon>::iterator myIter = myBalloons.begin();

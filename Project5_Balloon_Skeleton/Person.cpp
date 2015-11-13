@@ -53,6 +53,14 @@ switch(dir){
 		}
 
 	case RIGHT:
+		if (myLoc.x + spd + PERSON_WIDTH == DEFAULT_WIDTH)
+		{
+
+		}
+		else {
+			myLoc.x = myLoc.x + spd;
+		}
+
 		if (bLegChangePosition){
 			myScreenVector[myLoc.y].replace(myLoc.x, 14, " \\\\\\\\|////   ");
 			myScreenVector[myLoc.y + 1].replace(myLoc.x, 14, "  \\\\\\\\ ~|    ");
