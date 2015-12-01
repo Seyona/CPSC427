@@ -11,7 +11,7 @@ class DataStore
 {
 private:
 	Crypto* myCrypto;
-
+	 
 protected:
 	//ensures data is encrypted when stored
 	//will encrypt/decrypt if myCrypto is not null

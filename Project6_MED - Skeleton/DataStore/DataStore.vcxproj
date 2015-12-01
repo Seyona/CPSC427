@@ -79,6 +79,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DataStore.cpp" />
+    <ClCompile Include="DataStore_File.cpp" />
     <ClCompile Include="String_Data.cpp" />
   </ItemGroup>
   <ItemGroup>

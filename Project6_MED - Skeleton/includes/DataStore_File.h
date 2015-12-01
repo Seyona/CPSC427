@@ -29,5 +29,6 @@ private:
 	void closeFile(std::fstream& myfile);
 
 	std::string myFileName;
+	Crypto* myCrypto; //probably should remove this later BUT i couldn't get it to stop complaining with out it
 };
 
