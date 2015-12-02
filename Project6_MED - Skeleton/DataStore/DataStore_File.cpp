@@ -39,7 +39,7 @@ bool DataStore_File::save(std::vector<String_Data> &myVec) {
 			DataStore::encrypt(serializedData);
 			file >> serializedData;
 		}
-		return true;
+		this->closeFile(file);
 	} else {
 		return false;
 	}
