@@ -76,7 +76,8 @@ void String_Database::clear()
 */
 bool String_Database::load(DataStore  *myDataStore)
 {
-	myDataStore -> load(myStrings);
+	return myDataStore -> load(myStrings);
+	
 }
 
 /**
@@ -85,6 +86,7 @@ bool String_Database::load(DataStore  *myDataStore)
 */
 bool String_Database::save(DataStore *myDataStore)
 {
-	myDataStore-> save(myStrings);
+	return myDataStore-> save(myStrings);
+
 }
 
