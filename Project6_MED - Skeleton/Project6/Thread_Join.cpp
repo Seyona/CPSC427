@@ -20,16 +20,16 @@ const int NUMBER_TIMES_TO_ADD_STRING = 20;
 //use them if you wish
 
 ////global database object 
-//String_Database myGlobalCache;
+String_Database myGlobalCache;
 
 //will add myString numbTimes to myGlobalCache
-//void ThreadFunc(int numbTimes, std::string myString) 
-//{
-//	for (int i = 0; i < numbTimes; i++)
-//	{
-//		myGlobalCache.add(myString);
-//	}
-//}
+void ThreadFunc(int numbTimes, std::string myString) 
+{
+	for (int i = 0; i < numbTimes; i++)
+	{
+		myGlobalCache.add(myString);
+	}
+}
 
 bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, Crypto *pCrypto){
 	//DataStore_File myDataStore_File1(MYFILE1,pCrypto);
@@ -51,7 +51,48 @@ bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 int main() 
 {
 	//I created and run a bunch(20) of threads that use ThreadFunc above 
+	std::thread t1(ThreadFunc,100,"test");
+	std::thread t2(ThreadFunc,100,"test");
+	std::thread t3(ThreadFunc,100,"test");
+	std::thread t4(ThreadFunc,100,"test");
+	std::thread t5(ThreadFunc,100,"test");
+	std::thread t6(ThreadFunc,100,"test");
+	std::thread t7(ThreadFunc,100,"test");
+	std::thread t8(ThreadFunc,100,"test");
+	std::thread t9(ThreadFunc,100,"test");
+	std::thread t10(ThreadFunc,100,"test");
+	std::thread t11(ThreadFunc,100,"test");
+	std::thread t12(ThreadFunc,100,"test");
+	std::thread t13(ThreadFunc,100,"test");
+	std::thread t14(ThreadFunc,100,"test");
+	std::thread t15(ThreadFunc,100,"test");
+	std::thread t16(ThreadFunc,100,"test");
+	std::thread t17(ThreadFunc,100,"test");
+	std::thread t18(ThreadFunc,100,"test");
+	std::thread t19(ThreadFunc,100,"test");
+	std::thread t20(ThreadFunc,100,"test");
 
+
+	t1.join();
+	t2.join();
+	t3.join();
+	t4.join();
+	t5.join();
+	t6.join();
+	t7.join();
+	t8.join();
+	t9.join();
+	t10.join();
+	t11.join();
+	t12.join();
+	t13.join();
+	t14.join();
+	t15.join();
+	t16.join();
+	t17.join();
+	t18.join();
+	t19.join();
+	t20.join();
 	//Then I wait for all of them to finish so my program does not crash
  
 	//Then I go through myGlobalCache and make sure that it holds the correct data

@@ -16,6 +16,9 @@
   <ItemGroup>
     <ClInclude Include="..\includes\String_Database.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="String_Database.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9AD0D45A-B64E-4E7F-A1A8-486CAED52483}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

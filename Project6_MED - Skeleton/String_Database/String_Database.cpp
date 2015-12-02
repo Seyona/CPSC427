@@ -11,14 +11,14 @@
 /**
 * Constructor for the String_Database class
 */
-String_Database::String_Database()
+String_Database::String_Database(void)
 {
 }
 
 /**
 * Deconstructor for the String_Database class
 */
-String_Database::~String_Database()
+String_Database::~String_Database(void)
 {
 }
 
@@ -92,7 +92,7 @@ bool String_Database::load(DataStore  *myDataStore)
 bool String_Database::save(DataStore *myDataStore)
 {
 	std::lock_guard<std::mutex> lock(mutex);
-	return myDataStore-> save(myStrings);
+	return myDataStore -> save(myStrings);
 
 }
 
