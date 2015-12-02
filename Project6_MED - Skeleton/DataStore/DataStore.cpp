@@ -73,4 +73,6 @@ bool DataStore::save(std::vector<String_Data>& myVector) {
 		encrypt(vectorData->serialize());
 	}
 
+	return true;
+
 }
