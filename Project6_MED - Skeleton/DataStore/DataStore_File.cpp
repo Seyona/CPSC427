@@ -9,7 +9,7 @@
  * field with crypt object passed. If crypto object is not null, all data saved to
  * file will be encrypted using this object, and decrypted when loading from it.
  */
-DataStore_File::DataStore_File(std::string fname, Crypto* myCrypt = 0):myFileName(fname), myCrypto(myCrypt) {}
+DataStore_File::DataStore_File(std::string fname, Crypto* myCrypt):myFileName(fname), myCrypto(myCrypt) {}
 
 DataStore_File::~DataStore_File(void){}
 
@@ -17,7 +17,7 @@ DataStore_File::~DataStore_File(void){}
  * @private
  * Opens a filestream from a reference. Mode defaults to write only.
  */
-bool DataStore_File::openFile(std::fstream& myfile, const std::string& myFileName, std::ios_base::openmode mode = std::ios_base::in) {
+bool DataStore_File::openFile(std::fstream& myfile, const std::string& myFileName, std::ios_base::openmode mode) {
 	
 	myfile = std::fstream(myFileName);
 	

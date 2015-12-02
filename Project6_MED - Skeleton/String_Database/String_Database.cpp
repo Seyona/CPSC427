@@ -1,5 +1,6 @@
 #include "..\includes\String_Database.h"
 #include <algorithm>
+#include <thread>
 
 /** Private Variables
 	std::mutex mutex;
@@ -27,6 +28,7 @@ String_Database::~String_Database()
 */
 void String_Database::add(std::string &myString)
 {
+	std::lock_guard<std::mutex> lock(mutex);
 	String_Data data_to_add (myString, 1);
 	if (std::find(myStrings.begin(),myStrings.end(), data_to_add) != myStrings.end())
 	{
@@ -51,6 +53,7 @@ void String_Database::add(std::string &myString)
 */
 int String_Database::getCount(std::string &myString)
 {
+	std::lock_guard<std::mutex> lock(mutex);
 	String_Data data_to_get_count (myString, 1);
 	for (myStringsIter = myStrings.begin(); myStringsIter != myStrings.end(); myStringsIter++)
 	{
@@ -67,6 +70,7 @@ int String_Database::getCount(std::string &myString)
 */
 void String_Database::clear()
 {
+	std::lock_guard<std::mutex> lock(mutex);
 	myStrings.clear();
 }
 
@@ -76,6 +80,7 @@ void String_Database::clear()
 */
 bool String_Database::load(DataStore  *myDataStore)
 {
+	std::lock_guard<std::mutex> lock(mutex);
 	return myDataStore -> load(myStrings);
 	
 }
@@ -86,6 +91,7 @@ bool String_Database::load(DataStore  *myDataStore)
 */
 bool String_Database::save(DataStore *myDataStore)
 {
+	std::lock_guard<std::mutex> lock(mutex);
 	return myDataStore-> save(myStrings);
 
 }

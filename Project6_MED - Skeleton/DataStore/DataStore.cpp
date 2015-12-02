@@ -7,7 +7,7 @@
  * Constructor takes a myCrypt object and assigns it as class field
  * If no cyrpt object is passed, it is a assigned a null value
  */
-DataStore::DataStore(Crypto* myCrypt = 0):myCrypto(myCrypt) {}
+DataStore::DataStore(Crypto* myCrypt):myCrypto(myCrypt) {}
 
 DataStore::~DataStore(void){}
 
