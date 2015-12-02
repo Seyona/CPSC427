@@ -51,33 +51,28 @@ bool DataStore::decrypt(std::string &str) {
 	return complete;
 }
 
-/**
- * Iterates through vector of String_Data passed, decrypting each string
- */
-
-/*
-bool DataStore::load(std::vector<String_Data>& myVector) {
-	
-	for(std::vector<String_Data>::iterator vectorData = myVector.begin(); vectorData != myVector.end(); vectorData++) {
-		decrypt(vectorData->serialize());
-	}
-
-	return true;
-
-}
-*/
-/**
-* Iterates through vector of String_Data passed, encrypting each string
-*/
-
-/*
-bool DataStore::save(std::vector<String_Data>& myVector) {
-
-	for(std::vector<String_Data>::iterator vectorData = myVector.begin(); vectorData != myVector.end(); vectorData++) {
-		encrypt(vectorData->serialize());
-	}
-
-	return true;
-
-}
-*/
+///**
+// * Iterates through vector of String_Data passed, decrypting each string
+// */
+//bool DataStore::load(std::vector<String_Data>& myVector) {
+//	
+//	for(std::vector<String_Data>::iterator vectorData = myVector.begin(); vectorData != myVector.end(); vectorData++) {
+//		decrypt(vectorData->serialize());
+//	}
+//
+//	return true;
+//
+//}
+//
+///**
+//* Iterates through vector of String_Data passed, encrypting each string
+//*/
+//bool DataStore::save(std::vector<String_Data>& myVector) {
+//
+//	for(std::vector<String_Data>::iterator vectorData = myVector.begin(); vectorData != myVector.end(); vectorData++) {
+//		encrypt(vectorData->serialize());
+//	}
+//
+//	return true;
+//
+//}
