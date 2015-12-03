@@ -72,6 +72,7 @@ void String_Database::clear()
 {
 	std::lock_guard<std::mutex> lock(mutex);
 	myStrings.clear();
+	myStringsIter = myStrings.begin();
 }
 
 /**
