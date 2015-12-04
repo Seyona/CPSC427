@@ -1,5 +1,6 @@
 #include <vector>
-#include <sstream> 
+#include <sstream>
+#include <iostream>
 #include "..\includes\String_Data.h"
 
 using namespace std;
@@ -13,9 +14,8 @@ String_Data::~String_Data(void)
 }
 
 
-bool String_Data::operator==( const String_Data &ud)
-{
-	return (data == ud.data);
+bool String_Data::operator==( const String_Data& ud) {
+	return (this->data == ud.data);
 } 
 
 std::string String_Data::serialize(){

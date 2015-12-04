@@ -20,63 +20,73 @@ const int NUMBER_TIMES_TO_ADD_STRING = 20;
 //use them if you wish
 
 ////global database object 
-String_Database myGlobalCache;
+String_Database stringDatabase;
+Crypto_AES crytop ("IS IS A BULLSHIT");
+DataStore_File dEStore (ENCRYPT_FILE1 , &crytop);
+DataStore_File dStore (NO_ENCRYPT_FILE1, NULL);
 
 //will add myString numbTimes to myGlobalCache
 void ThreadFunc(int numbTimes, std::string myString) 
 {
 	for (int i = 0; i < numbTimes; i++)
 	{
-		myGlobalCache.add(myString);
+		stringDatabase.add(myString);
 	}
+	stringDatabase.save(&dEStore);
+
+	// assert results
+	std::cout << ((stringDatabase.getCount(myString) == numbTimes) ? "Pass" : "Fail") << std::endl;
 }
 
 bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, Crypto *pCrypto){
-	DataStore_File myDataStore_File1(MYFILE1,pCrypto);
-	myGlobalCache.save(&myDataStore_File1); // I don't think this does anything
+	//DataStore_File myDataStore_File1(MYFILE1,pCrypto);
+	//myGlobalCache.save(&myDataStore_File1);
 
 	//clear cache
-	myGlobalCache.clear();
+	//myGlobalCache.clear();
 
 	//load it
-	myGlobalCache.load(&myDataStore_File1);
+	//myGlobalCache.load(&myDataStore_File1);
 
 	//save to a different file
-	DataStore_File myDataStore_File2(MYFILE2,pCrypto);
-	myGlobalCache.save(&myDataStore_File2);
+	//DataStore_File myDataStore_File2(MYFILE2,pCrypto);
+	//myGlobalCache.save(&myDataStore_File2);
 
 	//I use my own objects here to compare the files
 	return true;
 }
-int main() 
-{
+int main() {
 	
-	std::string value("test");
-	//I created and run a bunch(20) of threads that use ThreadFunc above 
-	std::thread t1(ThreadFunc,20,  value);
-	std::thread t2(ThreadFunc,20,  value);
-	std::thread t3(ThreadFunc,20,  value);
-	std::thread t4(ThreadFunc,20,  value);
-	std::thread t5(ThreadFunc,20,  value);
-	std::thread t6(ThreadFunc,20,  value);
-	std::thread t7(ThreadFunc,20,  value);
-	std::thread t8(ThreadFunc,20,  value);
-	std::thread t9(ThreadFunc,20,  value);
-	std::thread t10(ThreadFunc,20, value);
-	std::thread t11(ThreadFunc,20, value);
-	std::thread t12(ThreadFunc,20, value);
-	std::thread t13(ThreadFunc,20, value);
-	std::thread t14(ThreadFunc,20, value);
-	std::thread t15(ThreadFunc,20, value);
-	std::thread t16(ThreadFunc,20, value);
-	std::thread t17(ThreadFunc,20, value);
-	std::thread t18(ThreadFunc,20, value);
-	std::thread t19(ThreadFunc,20, value);
-	std::thread t20(ThreadFunc,20, value);
+	//for(int i = 0; i < 100; i++) {
+	//	std::cout << "" + i << std::endl;
+	//	//std::thread t1(ThreadFunc, (rand() % 100 + 10), strcat("test", ""+i));
+	//}
 
+	//I created and run a bunch(20) of threads that use ThreadFunc above 
+	std::thread t1(ThreadFunc,100,"test1");
+	/*std::thread t2(ThreadFunc,100,"test2");
+	std::thread t3(ThreadFunc,100,"test3");
+	std::thread t4(ThreadFunc,100,"test4");
+	std::thread t5(ThreadFunc,100,"test5");
+	std::thread t6(ThreadFunc,100,"test6");
+	std::thread t7(ThreadFunc,100,"test7");
+	std::thread t8(ThreadFunc,100,"test8");
+	std::thread t9(ThreadFunc,100,"test9");
+	std::thread t10(ThreadFunc,100,"test10");
+	std::thread t11(ThreadFunc,100,"test11");
+	std::thread t12(ThreadFunc,100,"test12");
+	std::thread t13(ThreadFunc,100,"test13");
+	std::thread t14(ThreadFunc,100,"test14");
+	std::thread t15(ThreadFunc,100,"test15");
+	std::thread t16(ThreadFunc,100,"test16");
+	std::thread t17(ThreadFunc,100,"test17");
+	std::thread t18(ThreadFunc,100,"test18");
+	std::thread t19(ThreadFunc,100,"test19");
+	std::thread t20(ThreadFunc,100,"test20");
+	*/
 
 	t1.join();
-	t2.join();
+	/*t2.join();
 	t3.join();
 	t4.join();
 	t5.join();
@@ -94,14 +104,13 @@ int main()
 	t17.join();
 	t18.join();
 	t19.join();
-	t20.join();
-	//Then I wait for all of them to finish so my program does not crash
- 
-	//Then I go through myGlobalCache and make sure that it holds the correct data
-	int num_results = myGlobalCache.getCount(value);
-	std::cout << (num_results == 400)  << std::endl; // Good
+	t20.join();*/
 
-	myGlobalCache.clear(); // empty the cache
+	std::string keep_alive;
+	std::cin >> keep_alive;
+	////Then I wait for all of them to finish so my program does not crash
+ //
+	////Then I go through myGlobalCache and make sure that it holds the correct data
 
 
 	////then I test that serialization works correctly
@@ -110,7 +119,7 @@ int main()
 
 
 	////then with
-	Crypto_AES myCrypto("I Like Rollos   ");
-	testSerialization(ENCRYPT_FILE1, ENCRYPT_FILE2, &myCrypto);
+	////Crypto_AES myCrypto("I Like Rollos   ");
+	////testSerialization(ENCRYPT_FILE1, ENCRYPT_FILE2, &myCrypto);
 
 }

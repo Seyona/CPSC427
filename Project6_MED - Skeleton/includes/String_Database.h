@@ -13,8 +13,8 @@ private:
 	std::vector<String_Data>::iterator  myStringsIter;
 	
 public:
-	String_Database(void);
-	~String_Database(void);
+	String_Database();
+	~String_Database();
 
 	//add or increment the count for myString
 	void add(std::string &myString);

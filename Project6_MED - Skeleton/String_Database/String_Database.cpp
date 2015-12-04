@@ -1,6 +1,7 @@
 #include "..\includes\String_Database.h"
 #include <algorithm>
 #include <thread>
+#include <iostream>
 
 /** Private Variables
 	std::mutex mutex;
@@ -29,20 +30,19 @@ String_Database::~String_Database(void)
 void String_Database::add(std::string &myString)
 {
 	std::lock_guard<std::mutex> lock(mutex);
+
+	bool stringExists = false;
 	String_Data data_to_add (myString, 1);
-	if (std::find(myStrings.begin(),myStrings.end(), data_to_add) != myStrings.end())
-	{
-		for (myStringsIter = myStrings.begin(); myStringsIter != myStrings.end(); myStringsIter++)
-		{
-			if (*myStringsIter == data_to_add)
-			{
-				myStringsIter -> increment();
-				break;
-			}
+	
+	for(this->myStringsIter = this->myStrings.begin(); this->myStringsIter != this->myStrings.end(); this->myStringsIter++) {
+		if ((*this->myStringsIter) == data_to_add) {
+			stringExists = true;
+			myStringsIter->increment();
+			break;
 		}
 	}
-	else 
-	{
+
+	if(!stringExists) {
 		myStrings.push_back(data_to_add);
 	}
 }
@@ -54,15 +54,18 @@ void String_Database::add(std::string &myString)
 int String_Database::getCount(std::string &myString)
 {
 	std::lock_guard<std::mutex> lock(mutex);
+
+	int strCount = 0;
+
 	String_Data data_to_get_count (myString, 1);
-	for (myStringsIter = myStrings.begin(); myStringsIter != myStrings.end(); myStringsIter++)
-	{
-		if (*myStringsIter == data_to_get_count)
-		{
-			return myStringsIter -> getCount();
+	for (this->myStringsIter = myStrings.begin(); this->myStringsIter != myStrings.end(); this->myStringsIter++) {
+		if ((*myStringsIter) == data_to_get_count) {
+			strCount = myStringsIter -> getCount();
+			break;
 		}
 	}
-	return 0;
+
+	return strCount;
 }
 
 /**
@@ -72,7 +75,6 @@ void String_Database::clear()
 {
 	std::lock_guard<std::mutex> lock(mutex);
 	myStrings.clear();
-	myStringsIter = myStrings.begin();
 }
 
 /**
@@ -92,6 +94,7 @@ bool String_Database::load(DataStore  *myDataStore)
 */
 bool String_Database::save(DataStore *myDataStore)
 {
+	
 	std::lock_guard<std::mutex> lock(mutex);
 	return myDataStore -> save(myStrings);
 

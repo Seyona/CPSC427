@@ -9,7 +9,9 @@
  * field with crypt object passed. If crypto object is not null, all data saved to
  * file will be encrypted using this object, and decrypted when loading from it.
  */
-DataStore_File::DataStore_File(std::string fname, Crypto* myCrypt):myFileName(fname), myCrypto(myCrypt) {}
+DataStore_File::DataStore_File(std::string fname, Crypto* myCrypt):DataStore(myCrypt) {
+	myFileName = fname;
+}
 
 DataStore_File::~DataStore_File(void){}
 
@@ -19,7 +21,7 @@ DataStore_File::~DataStore_File(void){}
  */
 bool DataStore_File::openFile(std::fstream& myfile, const std::string& myFileName, std::ios_base::openmode mode) {
 	
-	myfile = std::fstream(myFileName);
+	myfile = std::fstream(myFileName, mode);
 	
 	if(!myfile) {
 		return false;
@@ -77,7 +79,7 @@ bool DataStore_File::load(std::vector<String_Data> &myVec) {
 bool DataStore_File::save(std::vector<String_Data> &myVec) {
 
 	std::fstream destFile;
-	this->openFile(destFile, this->myFileName);
+	this->openFile(destFile, this->myFileName, std::ios_base::out);
 
 	if(!destFile || !destFile.is_open()) {
 		return false;
@@ -86,7 +88,7 @@ bool DataStore_File::save(std::vector<String_Data> &myVec) {
 	for(String_Data dataString : myVec) {
 
 		std::string serializedData = dataString.serialize();
-		DataStore::encrypt(serializedData);
+		encrypt(serializedData);
 
 		destFile << serializedData << std::endl;
 

@@ -1,5 +1,6 @@
 #include <string>
 #include <thread> 
+#include <iostream>
 #include "DataStore.h"
 #include "../includes/Crypto_AES.h"
 
@@ -21,9 +22,9 @@ DataStore::~DataStore(void){}
 bool DataStore::encrypt(std::string &str) {
 
 	bool complete = true;
-
 	// encrypt string only if crypto object exists
-	if(this->myCrypto != NULL) {
+	if(myCrypto != NULL) {
+		std::cout << "hit" << std::endl;
 		(*myCrypto).encrypt(str);
 		return complete;
 	}
